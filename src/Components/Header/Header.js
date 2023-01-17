@@ -34,7 +34,7 @@ function Header () {
            </div>
            
            <div className='inline-flex float-right fill-theme-color text-theme-color'>
-           <div className='LangSelect flex px-10 ml-5 ' >
+           <div className='LangSelect flex px-10' >
          <select className='appearance-none focus:outline-none option-bg block px-5 w-28 -ml-8 text-base cursor-pointer font-medium uppercase' >
            <option className='options outline-none '>English</option>
            <option className='options outline-none '>Physics</option>
