@@ -55,9 +55,9 @@ function Header () {
           <span className='ml-3 mt-2.5 md:ml-0 md:mt-0 mr-5 fill-theme-color'>
             <OlxLogo widthHeight={'w-9 h-9 md:h-12 md:w-12'}/>
           </span>
-          <div className='MobileView md:hidden text-theme-color mt-4 ml-3'>
+          {nav? null :<div className='MobileView md:hidden text-theme-color mt-4 ml-3'>
           <h1 className='text-sm font-medium capitalize'>bangalore airport area, bengaluru <FontAwesomeIcon icon={faMapMarkerAlt}/></h1>
-          </div>
+           </div> /* nav == true element not shows otherwise it shows*/}
          <div className='searchArea hidden md:block truncate mr-4 border-theme-color bg-white relative px-2 pt-3 border-2 outline-none rounded focus:border-cyan-500 w-72 '>
            <input type='text' className='text-base ml-7 truncate placeholder-slate-500 text-theme-color w-10/12' placeholder='Search city, area or locality'  />
             <span className=' flex tems-center -mt-6'>
@@ -119,7 +119,7 @@ function Header () {
          </div>
          <h1 className='LoginText hidden md:block mt-3 -ml-3 text-lg font-medium underline decoration-2 underline-offset-4 hover:no-underline cursor-pointer truncate fill-theme-color text-theme-color'>Login</h1>
          
-         <div className="sellMenu  mt-[440px] mx-36 md:mx-6 md:top-0 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
+         <div className="sellMenu absolute sm:sticky mt-[640px] mx-36 md:mx-6 md:top-0 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
           <div className='sellMenu-in pt-2 px-7 flex rounded'>
             <span className='-ml-4'>
             <AddIcon/>

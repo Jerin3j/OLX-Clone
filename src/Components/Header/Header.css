@@ -1,7 +1,7 @@
 @tailwind utilities;
 @layer utilities{ 
   .header-bg{
-    height: 90px;
+    height: 74px;
     background-color: whitesmoke;
 } 
 }
