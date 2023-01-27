@@ -79,7 +79,7 @@ function Header () {
           </div>
 
 
-          {input?
+       {input?
           <div className='MobileView transition-all ease-in-out absolute md:hidden w-full h-full bg-white'>
            <div className='flex justify-between'>
               <FontAwesomeIcon onClick={()=>{setInput(false)}} icon={faArrowLeft} className='p-5 h-7' />
