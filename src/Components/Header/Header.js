@@ -9,8 +9,7 @@ import AddIcon from '../../Assets/AddIcon';
 import { useState } from 'react'
 import XIcon from '../../Assets/XIcon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faBagShopping, faBook, faBookAtlas, faBookBible, faBox, faBuilding, faCamera, faCar, faDashboard, faEarth, faMap, faMapLocation, faMapMarkedAlt, faMapMarker, faMapMarkerAlt, faMapPin, faMessage, faMobile, faMobileAlt, faMobileAndroid, faPhoneSlash, faQuestion } from '@fortawesome/free-solid-svg-icons'
-import { faBookmark } from '@fortawesome/free-regular-svg-icons'
+import { faArrowLeft, faBook, faBox, faBuilding, faCamera, faCar, faMapMarkerAlt, faMessage, faMobileAlt, faQuestion, faEarth } from '@fortawesome/free-solid-svg-icons'
 
 function Header () {
 
