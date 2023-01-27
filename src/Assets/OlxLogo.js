@@ -1,13 +1,11 @@
 import React from 'react'
 
-const OlxLogo = () => {
+const OlxLogo = (props) => {
   return (
     <svg
-        width="48px"
-        height="48px"
         viewBox="0 0 1024 1024"
         data-aut-id="icon"
-        className
+        className={props.widthHeight}
         fillRule="evenodd"
       >
         <path
