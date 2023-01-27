@@ -129,11 +129,11 @@ function Header () {
         </div>
       </div>
       <div className='hidden md:flex bg-white h-8 mt-1 shadow border-black items-center justify-evenly' >
-           <div className='flex text-theme-color '>
+           <div className='flex text-theme-color cursor-pointer'>
            <h1 className='uppercase font-medium mr-2 truncate'>all categories</h1>
             <ArrowBtn/>
            </div>  
-           <ul className='flex text-theme-color xl:-ml-64 truncate'>
+           <ul className='flex text-theme-color xl:-ml-64 truncate cursor-pointer'>
             <li className='font-light text-sm truncate'>Cars</li>
             <li className='font-light text-sm truncate'>Motor Cycles</li>
             <li className='font-light text-sm truncate'>Mobile Phones</li>
