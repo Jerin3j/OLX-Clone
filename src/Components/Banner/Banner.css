@@ -3,4 +3,12 @@
     background-size: cover;
     background-position: center;
      height: 138px;
+     margin-bottom: 45px;
+}
+.scroll::-webkit-scrollbar{
+    display: none;
+}
+.scroll{
+    scrollbar-width: none;
+    margin-bottom: 45px;
 }

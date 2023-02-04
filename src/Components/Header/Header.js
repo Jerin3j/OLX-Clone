@@ -118,7 +118,7 @@ function Header () {
          </div>
          <h1 className='LoginText hidden md:block mt-3 -ml-3 text-lg font-medium underline decoration-2 underline-offset-4 hover:no-underline cursor-pointer truncate fill-theme-color text-theme-color'>Login</h1>
          
-         <div className="sellMenu absolute sm:sticky mt-[640px] mx-36 md:mx-6 md:top-0 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
+         <div className="sellMenu fixed z-20 md:sticky bottom-6 mx-36 md:mx-6 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
           <div className='sellMenu-in pt-2 px-7 flex rounded'>
             <span className='-ml-4'>
             <AddIcon/>
