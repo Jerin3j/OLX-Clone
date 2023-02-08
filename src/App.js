@@ -1,18 +1,19 @@
 import './App.css';
-import Ads from './Components/Ads/Ads';
-import Banner from './Components/Banner/Banner';
-import Footer from './Components/Footer/Footer';
-import Header from './Components/Header/Header';
-import Products from './Components/Products/Products';
+import Home from "./Pages/Home"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignupPage from './Pages/SignupPage';
+import Login from './Components/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Banner/>
-      <Products/>
-      <Ads/>
-      <Footer/>
+      <BrowserRouter>
+       <Routes>
+       <Route element={<Home />} path='/'/>
+       <Route element={<SignupPage/>} path='/signup'/>
+       <Route element={<Login/>} path='/login'/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
