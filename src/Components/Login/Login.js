@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link, BrowserRouter,Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { app } from "../../Firebase/config";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -14,14 +14,14 @@ const Login = () => {
   const handleLogin = () =>{
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-    .then((result)=>{
+    .then(()=>{
       alert("Logined")
       navigate('/')
     
     })
-    .catch((er)=>{
-      console.log(er.message);
-      alert(er.code.slice(5))
+    .catch((error)=>{
+      console.log(error.message);
+      alert(error.code.slice(5))
     })
     }
       
@@ -29,8 +29,7 @@ const Login = () => {
   return (
     <div className='LoginPage'>
        <div className='absolute top-1/2 left-1/2 h-[450px] w-80 flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 ] md:w-[450px]  border-theme-color border-2 rounded-xl'>
-        <img src='https://imgs.search.brave.com/U0CUl7LbgMMwaA47z3INztIYvViivqLcHXJktFKSn4I/rs:fit:617:409:1/g:ce/aHR0cHM6Ly93d3cu/cGFrZmVhdHVyZXMu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIwLzA0L09MWF9O/ZXdfTG9nby5wbmc' className='w-36 md:w-52 rounded-full self-center md:my-4 '>
-        </img>
+        <img src='https://imgs.search.brave.com/U0CUl7LbgMMwaA47z3INztIYvViivqLcHXJktFKSn4I/rs:fit:617:409:1/g:ce/aHR0cHM6Ly93d3cu/cGFrZmVhdHVyZXMu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIwLzA0L09MWF9O/ZXdfTG9nby5wbmc' className='w-36 md:w-52 rounded-full self-center md:my-4' alt='OLX'/>
         <div className='flex flex-col px-2 '>
             <label>Email</label>
             <input onChange={(e)=>{setloginEmail(e.target.value)}} className='border-2 p-1 mb-2 text-gray-700 rounded' type={'email'} name='name' placeholder={'yourgmail@gmail.com'}/>

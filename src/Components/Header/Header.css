@@ -35,3 +35,17 @@ input:focus {
 li{
   padding: 10px;
 }
+
+.profile-pic{
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: blue;
+}
+.slide{
+  height:auto;
+  overflow: hidden;
+  transition: all .9s ease-in-out;
+    }

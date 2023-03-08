@@ -9,6 +9,7 @@ import { getFirestore } from "firebase/firestore";
             messagingSenderId: "405091397235",
             appId: "1:405091397235:web:31521d152e47fc2d254406",
             measurementId: "G-F5RHT8J8FH"
+
           };
 
 export const app = initializeApp(firebaseConfig)

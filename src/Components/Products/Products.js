@@ -45,7 +45,7 @@ const Products = () => {
                     <span className='truncate text-[10px]'>Bangalore Airport Area, Bengaluru</span>
                     <span className='hidden md:block text-[10px]'>Today</span>
                     </div>
-                    <span className='absolute right-0 md:right-1 top-4 cursor-pointer fill-current focus:fill-red-500 '>
+                    <span className='absolute right-0 md:right-1 top-4 cursor-pointer fill-current active:fill-red-500 '>
                     <HeartIcon/>
                   </span>
                   </div>

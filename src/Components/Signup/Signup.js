@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Signup.css';
-import { app } from "../../Firebase/config";
-import { getAuth , createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithRedirect, getRedirectResult, getAdditionalUserInfo} from "firebase/auth";
+import { getAuth , createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithRedirect, getRedirectResult, } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { FirebaseContext } from '../../Contexts/Context';
 const Signup = () => {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [password, setPassword] = useState("");
+
+  const app = useContext(FirebaseContext)   // Context
+
   const auth = getAuth(app);
   const db = getFirestore(app);
   const navigate = useNavigate();
@@ -27,11 +30,11 @@ const Signup = () => {
         await addDoc(collection(db, "Users"), {
           id: User.uid,
           username,
+          email,
           phonenumber,
           password
         })
-        alert("SignUp Done")
-           navigate('/login')
+           navigate('/login') 
         .catch((error) => {
           console.log("db : "+error.message) })
        })
@@ -51,6 +54,7 @@ const Signup = () => {
           const token = credential.accessToken;
           const User = result.user;
           const pa =result.password 
+          navigate('/login') 
             //  .then( async()=>{
           await addDoc(collection(db, "Users"), {
             id: User.uid,
@@ -69,15 +73,13 @@ const Signup = () => {
         console.log(credential);
       })
       
-
       
     }
   
   return (
     <div className='SignUp'>
       <div className='signup-box -translate-x-1/2 -translate-y-1/2 flex flex-col md:w-[500px] h-[600px] justify-center border-theme-color border-2 rounded-xl'>
-        <img src='https://imgs.search.brave.com/U0CUl7LbgMMwaA47z3INztIYvViivqLcHXJktFKSn4I/rs:fit:617:409:1/g:ce/aHR0cHM6Ly93d3cu/cGFrZmVhdHVyZXMu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIwLzA0L09MWF9O/ZXdfTG9nby5wbmc' className='w-36 md:w-52 rounded-full self-center md:my-4 '>
-        </img>
+        <img src='https://imgs.search.brave.com/U0CUl7LbgMMwaA47z3INztIYvViivqLcHXJktFKSn4I/rs:fit:617:409:1/g:ce/aHR0cHM6Ly93d3cu/cGFrZmVhdHVyZXMu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIwLzA0L09MWF9O/ZXdfTG9nby5wbmc' className='w-36 md:w-52 rounded-full self-center md:my-4 ' alt='OLX'/>
         <div className='flex flex-col px-2 '>
             <label>Username</label>
             <input onChange={(e)=>(setUsername(e.target.value))} value={username} className='border-2 p-1 mb-2 text-gray-700 rounded' type={'text'} name='name'/>
@@ -98,6 +100,7 @@ const Signup = () => {
       </div>
     </div>
   )
+  
 }
 
 export default Signup
