@@ -23,10 +23,8 @@ const Editprofile = () => {
 
     console.log("user details ",user)
       console.log("document", docId);
-      
 
       useEffect(()=>{
-        
         (async()=>{
           const usersCollection = collection(db, 'Users');
           const currentUserQuery = query(usersCollection, where("id","==", user?.uid)); //not maping coll , we use where to find oor current user uid == firestore doc.coll id
@@ -47,7 +45,7 @@ const Editprofile = () => {
 
  
     const setData=async()=>{
-      updateProfile(auth.currentUser, {displayName: username, }).then(async()=>{
+      updateProfile(auth.currentUser, {displayName: username}).then(async()=>{
         console.log("updated");
         alert("updated");
         const docRef = await doc(db, `Users/${docId}`)
@@ -63,11 +61,9 @@ const Editprofile = () => {
         console.log("updatePF : "+error.message);
       })
     }
-
-
   return (
     <div className='Editprofile '>
-      <div className="flex text-theme-color items-center justify-center pt-32 ">
+      <div className="flex text-theme-color items-center justify-center py-32 ">
         
         <div className="Left flex flex-col md:w-[500px] py-4 border shadow-xl rounded ">
           <div className="flex text-3xl font-semibold m-4 gap-3">

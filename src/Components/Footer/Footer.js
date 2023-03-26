@@ -22,8 +22,8 @@ const Footer = () => {
 
 
   return (
-    <div className='Footer '>
-        <div className=' Sections flex flex-col md:flex-row justify-center pt-4 mt-8 md:mt-0 w-full flex-wrap gap-12 item-center bg-[#ebeeef] px-2 md:px-5'>
+    <div className='Footer'>
+        <div className=' Sections flex flex-col md:flex-row h-screen justify-center pt-4 mt-8 md:mt-0 w-full flex-wrap gap-12 item-center bg-[#ebeeef] px-2 md:px-5'>
             <section className='S1 hidden md:block'>
                 <text className='font-medium flex  justify-around'>POPULAR LOCATIONS </text>
                     <ul className='text-sm font-extralight flex flex-col leading-3'>

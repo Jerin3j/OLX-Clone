@@ -9,9 +9,7 @@ root.render(
 
     <FirebaseContext.Provider value={app}>
     <Context >
-
-            <App />
-
+            <App/>
      </Context>
      </FirebaseContext.Provider>
 );

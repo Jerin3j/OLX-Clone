@@ -5,13 +5,13 @@ import Footer from '../Components/Footer/Footer'
 import Header from '../Components/Header/Header'
 import Products from '../Components/Products/Products'
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div className='HomeParentDiv'>
       <Header/>
-      <Banner/>
-      <Products/>
-      <Ads/>
+        <Banner/>
+        <Products/>
+        <Ads/>
       <Footer/>
     </div>
   )

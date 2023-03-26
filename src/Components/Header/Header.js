@@ -14,17 +14,19 @@ import { AuthContext } from '../../Contexts/Context'
 import { faHeart, faNoteSticky } from '@fortawesome/free-regular-svg-icons'
 import { getAuth, signOut, } from "firebase/auth";
 import { Link } from 'react-router-dom'
+import Loading from '../../Assets/Loading/Loading'
 
 function Header () {
 
   const [nav, setNav] =useState(false)
   const [input, setInput] =useState(false) 
   const [profile, setProfile] = useState(false) 
+  const [language, setLanguage] = useState(false)
   const [edit, setEdit] =useState(false)
   const {user} = useContext(AuthContext)
   
-    const displayName = user?.displayName  // user displayName
-   const len = displayName?.length-1   // displayName length-1 
+    const displayName = user?.displayName ||'????'  // user displayName
+   const len = displayName.length -1   // displayName length-1 
    console.log(len);
   
      const handleLogout = () =>{
@@ -63,7 +65,7 @@ function Header () {
           <hr/>
           <ul className='cursor-pointer text-theme-color'>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faCamera} className="pr-4 pl-2 "/>Start selling</li>
-            <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart} clabsolute className="pr-4 pl-2 "/>My Ads</li>
+            <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart}  className="pr-4 pl-2 "/>My Ads</li>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faBook} className="pr-4 pl-2"/>Buy Business Packages</li>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faMessage} className="pr-4 pl-2"/>Bought Packages & Billing</li>
              <hr/> 
@@ -101,7 +103,9 @@ function Header () {
         
 
           <span className='ml-3 mt-2.5 md:ml-0 md:mt-0 mr-5 fill-theme-color'>
+          <Link to={'/'}>
             <OlxLogo widthHeight={'w-9 h-9 md:h-12 md:w-12'}/>
+            </Link>
           </span>
           {nav? null :<div className='MobileView md:hidden text-theme-color mt-4 ml-3'>
           <h1 className='text-sm font-medium capitalize'>bangalore airport area, bengaluru <FontAwesomeIcon icon={faMapMarkerAlt}/></h1>
@@ -110,7 +114,7 @@ function Header () {
            <input type='text' className='text-base ml-7 truncate placeholder-slate-500 text-theme-color w-10/12' placeholder='Search city, area or locality'  />
             <span className=' flex tems-center -mt-6'>
              <SearchIcon />
-               <span className='ml-52 '>
+               <span className='ml-52 active:rotate-180 ease-in-out duration-300'>
                 <ArrowBtn/>
                </span>
             </span>
@@ -156,14 +160,18 @@ function Header () {
             </div>
           </div>: null}
 
-           <div className='LangSelect hidden md:flex px-10 truncate fill-theme-color text-theme-color' >
-             <select className='appearance-none focus:outline-none option-bg px-5 w-28 -ml-8 text-base cursor-pointer font-medium uppercase' >
-               <option className='options outline-none truncate'>English</option>
-               <option className='options outline-none truncate'>Physics</option>
-            </select>
-            <span className='mt-4 -ml-5 mr-2 cursor-pointer'>
+           <div className='LangSelect hidden md:flex px-10 mt-4 fill-theme-color text-theme-color' >
+             <h1 className='appearance-none focus:outline-none option-bg text-base cursor-pointer font-medium uppercase' onClick={()=>{setLanguage(!language)}} >english</h1>
+            <span className={`mr-2 ${language?'rotate-180 ease-in-out duration-500': 'duration-500'} `}>
              <ArrowBtn/>
             </span>
+
+            { language ?
+         <div className='ProfileOpt hidden md:flex items-center flex-col justify-evenly absolute z-20 bg-white right-80 w-60 h-20 mt-9 rounded-lg shadow-lg '>
+           <h1 className='uppercase font-medium'>English</h1>
+           <h1 className='uppercase font-medium'>Malyalam</h1>
+
+          </div>:null}
          </div>
 
         <div className='LoginName'> 
@@ -171,12 +179,12 @@ function Header () {
         <div className='hidden md:flex DesktopLogined '>
             {/* <FontAwesomeIcon icon={faMessage}/>
             <FontAwesomeIcon icon={faNoteSticky}/> */}
-           <div onClick={()=>{setProfile(!profile)}} className='ProfileIcon flex items-center gap-3'>
+           <div onClick={()=>{setProfile(!profile)}} onBlur={()=>{setProfile(false)}} onFocus={()=>{setProfile(false)}} className='ProfileIcon flex items-center gap-3'>
            {/* <img className='w-10 h-10 mt-3'src='https://statics.olx.in/external/base/img/avatar_1.png'></img> */}
            <div className='ProfileIcon-small flex mt-3 w-10 h-10 profile-pic self-center'>
          <h1 className='self-center left-10 text-xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
          </div>
-            <span> <ArrowBtn/> </span>
+            <span className={`${profile?'rotate-180 ease-in-out duration-500':'duration-500'}`}> <ArrowBtn/> </span>
            </div>
         </div>
         :
@@ -195,19 +203,19 @@ function Header () {
           <div className='Text flex flex-col ml-3'>
           <p className='text-left text-[15px] text-gray-500'>Hello,</p>
            <h1 className='font-medium text-xl  text-theme-color capitalize'>Welcome {user.displayName}</h1>
+
          <Link to={'/editProfile/info'}>
          <h1 className='underline' onClick={()=>{setEdit(true)}}>View or edit Profile</h1>
          </Link>
-           {edit?
-            <div className="EditProfile">
-
-            </div>: undefined}
+         
            <p className='text-left text-[12px] mt-1 text-gray-400'>We are built on trust. Help one another to get to know each other better.</p>
           </div>
          </div>
             <hr/>
             <ul className='cursor-pointer text-theme-color'>
-              <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart} clabsolute className="pr-4 pl-2 "/>My Ads</li>
+              <Link to={'/favorites'}>
+              <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart} className="pr-4 pl-2 "/>My Favorites</li>
+              </Link>
               <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faBook} className="pr-4 pl-2"/>Buy Business Packages</li>
               <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faMessage} className="pr-4 pl-2"/>Bought Packages & Billing</li>
                <hr/> 

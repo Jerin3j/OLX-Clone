@@ -7,8 +7,8 @@ const Banner = () => {
     <div className='Banner'>
       {<div className=' mt-1 hidden md:block '>
         <div className='bannerImg flex items-center justify-around'>
-        <div className='Button cursor-pointer bg-theme-color h-10 w-24 ml-40 flex items-center justify-center rounded'>
-          <h1 className='text-white font-medium'>Sell Car</h1>
+        <div className='Button cursor-pointer bg-theme-color active:bg-whitesmoke text-white active:text-theme-color active:border-2 border-theme-color h-10 w-24 ml-40 flex items-center justify-center rounded'>
+          <h1 className=' font-medium'>Sell Car</h1>
         </div>
         </div>
       </div>|| <Skeleton/>}
