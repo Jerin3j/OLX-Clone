@@ -51,7 +51,7 @@ function Header () {
         {/* Mobile View Navbar */}
         {nav?
          user ?
-          <div className={`MobileView bg-white absolute z-20 mt-12 w-full h-full ${nav? `slide` : null}`} >
+          <div className={`MobileView bg-white absolute  mt-12 w-full h-full shadow-xl rounded z-40 ${nav? `slide` : null}`} >
       <div className='Profile inline-flex p-6 -ml-2'>
        <div className='ProfileIcon flex w-32 h-20 profile-pic self-center'>
        <h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
@@ -59,13 +59,18 @@ function Header () {
         <div className='Text flex flex-col ml-3' >
         <p className='text-left text-[15px] text-gray-500'>Hello,</p>
          <h1 className='font-medium text-xl  text-theme-color capitalize'>Welcome {user.displayName}</h1>
+         <Link to={'/editProfile/info'}>
+         <h1 className='underline text-[15px]' onClick={()=>{setEdit(true)}}>View or edit Profile</h1>
+         </Link>
          <p className='text-left text-[12px] mt-1 text-gray-400'>We are built on trust. Help one another to get to know each other better.</p>
         </div>
        </div>
           <hr/>
           <ul className='cursor-pointer text-theme-color'>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faCamera} className="pr-4 pl-2 "/>Start selling</li>
-            <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart}  className="pr-4 pl-2 "/>My Ads</li>
+            <Link to={'/favorites'}>
+              <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart} className="pr-4 pl-2 "/>My Favorites</li>
+              </Link>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faBook} className="pr-4 pl-2"/>Buy Business Packages</li>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faMessage} className="pr-4 pl-2"/>Bought Packages & Billing</li>
              <hr/> 
@@ -77,7 +82,7 @@ function Header () {
           </ul>
         </div>
         :
-        <div className="MobileView bg-white absolute mt-12 w-full h-full">
+        <div className="MobileView bg-white absolute mt-12 w-full h-full shadow-2xl">
         <div className='Profile inline-flex p-6 -ml-2'>
          <img className='w-24 h-24 'src='https://statics.olx.in/external/base/img/avatar_empty_state.png'></img>
           <div className='Text flex flex-col ml-3'>

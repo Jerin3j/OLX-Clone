@@ -15,4 +15,4 @@ export const FavContext = createContext()
  )
 }
 
-export default Post;
+export default Favorites;

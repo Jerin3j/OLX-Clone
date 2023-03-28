@@ -6,7 +6,7 @@ export const ProductContext = createContext()
  function Post({children}){
 
   const [productDetails, setProductDetails] = useState()
-
+  
  return(
     
    <ProductContext.Provider value={{productDetails, setProductDetails}}>

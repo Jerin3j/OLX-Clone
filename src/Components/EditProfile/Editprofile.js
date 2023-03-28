@@ -63,23 +63,25 @@ const Editprofile = () => {
     }
   return (
     <div className='Editprofile '>
-      <div className="flex text-theme-color items-center justify-center py-32 ">
+      <div className="flex text-theme-color items-center justify-center md:py-28 ">
         
-        <div className="Left flex flex-col md:w-[500px] py-4 border shadow-xl rounded ">
+        <div className="Left flex flex-col w-full  md:w-[500px] py-4 border shadow-xl rounded ">
           <div className="flex text-3xl font-semibold m-4 gap-3">
-           <FontAwesomeIcon className='cursor-pointer' icon={faArrowLeft} onClick={()=>navigate(-1)}/>
             <h1 className=' underline decoration-clone underline-offset-8 decoration-2 decoration-slate-500'>Edit profile</h1>
             </div>
         <div className="flex flex-col mx-3 ml-4 gap-2 mt-2">
-            <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Name</h1>
-            <input className=" rounded h-10 border-2 border-gray-600 pl-3 active:border-teal-500" defaultValue={user?.displayName} placeholder='Name' onChange={(e)=>(updateUsername(e.target.value))}/>
-            <h1 className='font-medium text-md pl-0.5 text-gray-500'>Phone</h1>
-            <input className=" rounded h-10 border-2 border-gray-600 pl-3 active:border-teal-500" defaultValue={userDoc?.phonenumber} placeholder='Phone Number' onChange={(e)=>(updatePhoneNumber(e.target.value))}/>
-            <h1 className='font-medium text-md pl-0.5 text-gray-500'>Email</h1>
-            <input className=" rounded h-10 border-2 border-gray-600 pl-3 active:border-teal-500" defaultValue={userDoc?.email} placeholder='Email' onChange={(e)=>(updateEmail(e.target.value))}/>
+            <h1 className='font-medium text-lg pl-0.5 text-gray-500 '>Name</h1>
+            <input className=" rounded h-14 border-2 border-gray-600 pl-3 active:border-teal-500" defaultValue={user?.displayName} placeholder='Name' onChange={(e)=>(updateUsername(e.target.value))}/>
+            <h1 className='font-medium text-lg pl-0.5 text-gray-500'>Phone</h1>
+            <input className=" rounded h-14 border-2 border-gray-600 pl-3 active:border-teal-500" defaultValue={userDoc?.phonenumber} placeholder='Phone Number' onChange={(e)=>(updatePhoneNumber(e.target.value))}/>
+            <h1 className='font-medium text-lg pl-0.5 text-gray-500'>Email</h1>
+            <input className=" rounded h-14 border-2 border-gray-600 pl-3 active:border-teal-500" defaultValue={userDoc?.email} placeholder='Email' onChange={(e)=>(updateEmail(e.target.value))}/>
 
-            <div className='h-10 w-24 flex self-center mt-5 justify-center items-center bg-green-900 active:bg-teal-500  rounded' onClick={setData}>
-              <h1 className='text-white font-semibold cursor-pointer'>Submit</h1>
+            <div className='Btns flex justify-between px-8'>
+              <h1 onClick={()=>navigate(-1)} className=' font-medium mt-10 text-xl cursor-pointer text-theme-color border-green-90 underline underline-offset-8'>Discard</h1>
+            <div className='SaveBtn h-12 md:h-14 w-28 md:w-32 flex self-center mt-8 justify-center items-center bg-theme-color active:bg-teal-500  rounded' onClick={setData}>
+              <h1 className='text-white font-semibold md:text-lg cursor-pointer'>Save Changes</h1>
+            </div>
             </div>
         </div>
 

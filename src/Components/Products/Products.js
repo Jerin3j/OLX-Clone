@@ -1,29 +1,34 @@
-import React, { useContext, useState, useEffect} from 'react'
+import React, { useContext,createContext, useState, useEffect} from 'react'
 import HeartIcon from '../../Assets/HeartIcon'
 import './Products.css'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { FirebaseContext } from '../../Contexts/Context'
-import { collection, getDocs, getFirestore, query } from "firebase/firestore";
+import { AuthContext, FirebaseContext } from '../../Contexts/Context'
+import { addDoc, collection, getDocs, getFirestore, limit, orderBy, query, startAt } from "firebase/firestore";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { ProductContext } from '../../Contexts/ProductContext'
 import { useNavigate } from 'react-router-dom'
+import { async } from '@firebase/util'
+import userEvent from '@testing-library/user-event'
 
 
 const Products = () => {
   const [productData, setProductData] = useState([])
+  const [loadProducts, setLoadProducts] = useState(10)
   const app = useContext(FirebaseContext)
   const db = getFirestore(app)
   const {setProductDetails} =useContext(ProductContext);
+  const {user} = useContext(AuthContext)
   const navigate = useNavigate();
-
   
     useEffect(()=>{
      const getUsersData=async()=>{
       try{
-      const q =  query(collection(db, 'Products'))
-      const ProductsQuery = await getDocs(q)
+     const poductLimit = loadProducts
+     const startIndex = (loadProducts - 1) * poductLimit;
+     const q = await query(collection(db, 'Products'), orderBy('CreatedAt'), limit(loadProducts))
+     const ProductsQuery = await getDocs(q)
      const products = ProductsQuery.docs.map((doc)=>doc.data()
       )
       setProductData(products)
@@ -32,17 +37,28 @@ const Products = () => {
       }
      }   
    getUsersData()
-
    },[])
    
-   const showFav=(props)=>{
-    toast(props+" Added to favorites")
+   const handleFavorite= async(product)=>{
+    toast(product.ProductTitle+" added to favorites")
+     await addDoc(collection(db, "Favorites"),{
+      FavId: user.uid,
+      ...product,
+     })
+     .catch((er)=>{
+      console.log(er.message);
+     })
    }
+
+   const loadMore = () => {
+   setLoadProducts(loadProducts+2)
+  }
+ console.log("load",loadProducts);
   return (
     <div className='Products'>
       <div className='flex flex-col mt-16 md:mt-32 relative'>
-      <h1 className='place-self-center flex -ml-40 sm:-ml-[430px] md:-ml-[950px] text-sm md:text-2xl'>Fresh recommendations</h1>
-        <ul className='Allproducts pt-4 ml-4 sm:ml-0 flex  flex-wrap items-center content-start justify-center'>
+      <h1 className='place-self-center -ml-40 sm:-ml-[430px] md:-ml-[950px] flex  text-sm md:text-2xl'>Fresh recommendations</h1>
+        <ul className='Allproducts pt-4 ml-4 sm:ml-0 flex xl:w-[1400px] flex-wrap md:self-center items-center content-start justify-center'>
             {
                 productData.map((product)=>(
               <li className='productBox mr-3.5 mb-3 md:w-72 md:h-[268px] w-5/12  border border-slate-300 rounded relative '>
@@ -60,7 +76,7 @@ const Products = () => {
                     <span className='truncate text-[10px]'>{product.Location||<Skeleton/>}</span>
                     <span className='hidden md:block text-[10px]'>{product.CreatedAt||<Skeleton/>}</span>
                     </div>
-                    <span onClick={()=>showFav(product.ProductTitle)} className='absolute right-0 md:right-1 top-4 cursor-pointer fill-gray-400 active:fill-pink-600 '>
+                    <span onClick={()=>handleFavorite(product)} className='absolute right-0 md:right-1 top-4 cursor-pointer fill-gray-400 active:fill-pink-600 '>
                     <HeartIcon/>
                   </span>
                   </div>
@@ -88,7 +104,7 @@ const Products = () => {
               </li>
             </ul>
             <ToastContainer hideProgressBar={true} position="bottom-center" theme='dark' limit={1} />
-           <div className='self-center -translate-x-2/4 Button cursor-pointer border-2 hover:border-4 border-theme-color h-10 w-28 ml-40 flex items-center justify-center rounded'>
+           <div onClick={loadMore}  className='self-center -translate-x-2/4 Button cursor-pointer border-2 hover:border-4 border-theme-color h-10 w-28 ml-40 flex items-center justify-center rounded'>
           <h1 className='text-theme-color font-medium'>Load More</h1>
         </div>
         </div>
