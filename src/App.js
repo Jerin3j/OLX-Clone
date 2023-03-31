@@ -10,11 +10,12 @@ import CreatePage from './Pages/CreatePage';
 import EditprofilePage from './Pages/EditprofilePage';
 import ViewPrdtPage from './Pages/ViewPrdtPage';
 import Post  from './Contexts/ProductContext';
-import Favorite from './Components/Favorite/Favorite';
-
+import Loading from './Assets/Loading/Loading';
+import FavoritePage from './Pages/FavoritePage';
+import NotFound from './Components/404 Error/NotFound';
 function App() {
 
-  const {setUser} = useContext(AuthContext)
+  const {user, setUser} = useContext(AuthContext)
   const app = useContext(FirebaseContext)
 
   useEffect( ()=>{
@@ -35,12 +36,13 @@ function App() {
        <Route element={<EditprofilePage/>} path='/editProfile/info'/>
        <Route element={<CreatePage/>} path='/createProduct'/>
        <Route element={<ViewPrdtPage/>} path='/viewProduct'/>
-       <Route element={<Favorite/>} path='/favorites'/>
+       <Route element={<FavoritePage/>} path='/favorites'/>
+       <Route element={<NotFound/>} path='*'/>
         </Routes>
       </BrowserRouter>
       </Post>
      
-    </div>
+    </div> 
   );
 }
 

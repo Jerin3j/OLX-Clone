@@ -30,27 +30,26 @@ const Favorite = () => {
     const removeFavorite =async (doc)=>{
       const favQuery = query(favoritesColl, where("Url", "==", doc?.Url))
         const favDocs = await getDocs(favQuery)
-        const batch = writeBatch(db)
         favDocs.forEach(async(doc)=>(
          await deleteDoc(doc.ref),
           navigate(0)
         ))
-        alert(doc.ProductTitle+"  Removed from favorites")
+        toast(doc.ProductTitle+"  Removed from favorites")
     }
 
 
   return (
-
+    
     <div className='Favorites flex flex-col '>
-        <Header/>
-        <div className='ProductsContainer flex flex-col items-center my-5 md:my-10'>
-      { favorites?
+      {favorites!=null?
+        <div className='ProductsContainer flex flex-col items-center my-5 md:my-10 h-screen overflow-y-scroll drop-shadow-2xl'>
+      {
           favorites.map((doc) => (
       <div key={doc.Price} className='FavoriteProduct relative w-[380px] md:w-[900px] flex self-center gap-1 md:gap-8 px-4 py-5 my-2 md:my-5 md:px-8 md:py-10 border-2 border-gray-300 rounded '>
         <div className='productImg'>
             <img className='h-20 w-24 md:h-32 md:w-44 rounded' src={doc.Url}/>
         </div>
-        <div className='ProductDetails   text-theme-color flex flex-col '>
+        <div className='ProductDetails text-theme-color flex flex-col '>
             <h1 className='text-xl md:text-3xl font-medium'>{doc.ProductTitle}</h1>
             <h1 className='text-base md:text-xl font-extralight'>{doc.Description}</h1>
             <h1 className='text-sm font-normal'>{doc.Location}</h1>
@@ -60,10 +59,15 @@ const Favorite = () => {
         </span>
       </div>))
 
-       :<h4>nothing</h4>}
-       </div>
-       <Footer/>
-    </div>
+      }
+       </div>: navigate("/login")
+    // <div className='h-screen flex justify-center items-center'>
+    //   <h1>Sorry, You dont have any favorites</h1>
+    // </div>
+    }
+       <ToastContainer hideProgressBar={true} position="bottom-center" theme='dark' limit={1} />
+
+    </div> 
   )
 }
 

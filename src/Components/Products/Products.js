@@ -9,8 +9,6 @@ import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { ProductContext } from '../../Contexts/ProductContext'
 import { useNavigate } from 'react-router-dom'
-import { async } from '@firebase/util'
-import userEvent from '@testing-library/user-event'
 
 
 const Products = () => {
@@ -25,8 +23,6 @@ const Products = () => {
     useEffect(()=>{
      const getUsersData=async()=>{
       try{
-     const poductLimit = loadProducts
-     const startIndex = (loadProducts - 1) * poductLimit;
      const q = await query(collection(db, 'Products'), orderBy('CreatedAt'), limit(loadProducts))
      const ProductsQuery = await getDocs(q)
      const products = ProductsQuery.docs.map((doc)=>doc.data()
@@ -37,23 +33,23 @@ const Products = () => {
       }
      }   
    getUsersData()
-   },[])
+   },[loadProducts])
    
    const handleFavorite= async(product)=>{
-    toast(product.ProductTitle+" added to favorites")
+    if(user){
+    toast(product.ProductTitle +" Added to favorites")
      await addDoc(collection(db, "Favorites"),{
       FavId: user.uid,
       ...product,
-     })
-     .catch((er)=>{
-      console.log(er.message);
-     })
+     })}else {
+     navigate('/login')}
+    
    }
 
    const loadMore = () => {
-   setLoadProducts(loadProducts+2)
-  }
- console.log("load",loadProducts);
+    setLoadProducts((prevLoadProducts) => prevLoadProducts + 2);
+  };
+
   return (
     <div className='Products'>
       <div className='flex flex-col mt-16 md:mt-32 relative'>

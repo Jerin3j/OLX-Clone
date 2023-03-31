@@ -1,5 +1,5 @@
-import { faBuilding, faEdit } from '@fortawesome/free-regular-svg-icons'
-import { faArrowCircleLeft, faArrowLeft, faBicycle, faCarAlt, faCarSide, faMobileScreen, faPenAlt, faRoadSpikes, faSnowman } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faEdit, faImage } from '@fortawesome/free-regular-svg-icons'
+import { faArrowCircleLeft, faArrowLeft, faBicycle, faCarAlt, faCarSide, faIgloo, faMobileScreen, faPenAlt, faRoadSpikes, faSnowman } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React,{ useContext, useState, useEffect } from 'react'
 import   './Create.css'
@@ -10,6 +10,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import Loading from '../../Assets/Loading/Loading'
 import Login from '../Login/Login'
+import Footer from '../Footer/Footer'
 
 
 const Create = () => {
@@ -102,18 +103,18 @@ const Create = () => {
           <div className='PostItems md:mt-5  md:w-[500px] border-2 rounded shadow-xl flex flex-col'>
           <h1 className='uppercase text-lg self-center m-5 font-medium underline decoration-clone underline-offset-8 decoration-2 decoration-theme-color'>select a category</h1>
             <ul className=''>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>OLX Autos (Cars)</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBuilding}/>Properties</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faMobileScreen}/>Mobiles</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faRoadSpikes}/>Jobs</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBicycle}/>Bikes</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Electronics & Appliances</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Books, Sports & Hobbies</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Furniture</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Pets</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Fashion</li>
-                <li className='hover:bg-teal-500' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Services</li>
-                <li className='hover:bg-teal-500' contentEditable='true' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faEdit}/>Custom</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>OLX Autos (Cars)</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBuilding}/>Properties</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faMobileScreen}/>Mobiles</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faRoadSpikes}/>Jobs</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBicycle}/>Bikes</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faIgloo}/>Electronics & Appliances</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faImage}/>Books, Sports & Hobbies</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Furniture</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Pets</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Fashion</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Services</li>
+                <li className='hover:bg-teal-500 text-lg' contentEditable='true' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faEdit}/>Custom</li>
                 </ul>
             </div>
         </div>
@@ -136,7 +137,7 @@ const Create = () => {
               <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Ad title *</h1>
                <input onChange={(e)=>{setTitle(e.target.value)}} type="text" className="rounded h-10 border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 " required/>
              <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Description *</h1>
-              <input onChange={(e)=>{setDesc(e.target.value)}} type="text" className="rounded border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 h-36 text-left " />
+              <textarea onChange={(e)=>{setDesc(e.target.value)}} type="text" className="rounded border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 h-36 text-left " />
              <hr/>
              <h1 className='uppercase font-extrabold text-xl '>set a price</h1>
               <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Price *</h1>
@@ -185,9 +186,9 @@ const Create = () => {
         </div>          
        </div>:null
       }
-    </div>: (
+    </div> : (
   alert("Sorry, You are not Logined. Please Log in"),
-  navigate('/'))
+  navigate('/login'))
   )
 }
 

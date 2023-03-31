@@ -1,14 +1,17 @@
-import { addDoc, collection, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore'
+import { addDoc, collection, getDoc, getDocs, getFirestore, limit, orderBy, query, where } from 'firebase/firestore'
 import React, { useContext,useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+import { RWebShare } from 'react-web-share'
 import HeartIcon from '../../Assets/HeartIcon'
+import ShareIcon from '../../Assets/ShareIcon'
 import { AuthContext, FirebaseContext } from '../../Contexts/Context'
 import { ProductContext } from '../../Contexts/ProductContext'
 import './ViewProduct.css'
 
 const ViewProduct = () => {
 
+  
   const  {productDetails} = useContext(ProductContext)
   const {user} = useContext(AuthContext)
   const [userDetails, setuserDetails] = useState('')
@@ -17,6 +20,8 @@ const ViewProduct = () => {
   const navigate = useNavigate();
   const  app = useContext(FirebaseContext)
   const db = getFirestore(app);
+  
+  document.title= `OLX | ${productDetails.ProductTitle.toUpperCase()}`
 
     useEffect(()=>{
      ( async ()=>{
@@ -33,66 +38,85 @@ const ViewProduct = () => {
     useEffect(()=>{
       const relatedPosts =async()=>{
       const PostColl =  collection(db, 'Products')
-      const PostData=  query(PostColl, where("id", "==", user?.uid))
+      const PostData=  query(PostColl, where("id", "==", productDetails?.id), limit(6))
       const PostDatas =await getDocs(PostData)
-       const Posts = PostDatas.docs.map(doc=>(doc.data()))
+       const Posts = PostDatas.docs.map((doc)=>doc.data())
        setRelatedPost(Posts);
       }
       relatedPosts()
     }, [])
+    console.log(relatedPost);
 
     const handleFavorite= async(product)=>{
-      setLike(true)
+      if(user){
+        setLike(true)
       toast(product.ProductTitle +" Added to favorites")
        await addDoc(collection(db, "Favorites"),{
         FavId: user.uid,
         ...product,
-       })
+       })}else {
+       navigate('/login')}
       
     }
-  
-
 
   return (
-    productDetails ?
+     productDetails ?
     <div className='DisplayProduct'>
-        <div className='YourProduct bg-whitesmoke py-32 flex justify-center gap-10'>
+      {/* Desktop screen */}
+        <div className='hidden md:flex bg-whitesmoke py-32  justify-center gap-10'>
 
             <div className='Product-one flex flex-col gap-0.5'>
-            <div className='ProductPic relative w-[800px] flex justify-center h-[500px] border-2 border-gray-300 bg-black rounded'>
+            <div className='ProductPic relative w-[800px] h-[500px] flex justify-center border-2 border-gray-300 bg-black rounded-md'>
               <img className='self-center h-full w-[400px]' src={productDetails?.Url} />
-              <span onClick={()=>handleFavorite(productDetails)} className={`absolute right-5 top-4 ${like? 'fill-red-400' : "fill-gray-300 "}  cursor-pointer`}>
-            <HeartIcon/>
-             </span>
             </div>
             <div className='ProductImgss h-[70px] w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
-             <img className='w-14 h-14' src={productDetails?.Url}/>
+             <img className='w-14 h-14 rounded' src={productDetails?.Url}/>
             </div>
              <div className='ProductDesc h-[100px] w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
              <h1 className='font-semibold text-2xl text-theme-color '>Description</h1>
              <p className='text-theme-color font-light'>{productDetails?.Description}</p>
              </div>
-             <div className='RelatedProducts  h-[200px] w-[800px] border-2 border-gray-300 bg-white rounded pl- flex overflow-x-scroll '>
-              {relatedPost.map((post)=>( 
-              <div className='Post ml-4'>
-                <img className='k h-[100px] w-[900px]' src={post.Url}/>
-                <h1 className='truncte'>{post.ProductTitle}</h1>
-              </div>))
-              }
+             <div className='RelatedProducts h-[200px] w-[800px] border-2 border-gray-300 bg-white rounded pl- flex flex-col justify-start '>
+             <h1 className='text-lg font-semibold ml-3'>Related Ads</h1>
+                <div className='flex  overflow-x-scroll '>
+                {relatedPost.map((post)=>( 
+              <div className='Post ml-4 overflow-hidden'>
+                <img className='h-[100px] w-[200px] rounded-lg' src={post.Url}/>
+                <h1 className='truncate font-medium'>{post.ProductTitle}</h1>
+              </div>))}
+              </div>
+              
              </div>
            </div>
 
             <div className='ProductDetails flex flex-col gap-2 '>
               <div className='ProductName w-[390px] h-[170px] border-2 border-gray-300 bg-white rounded self-start pl-4 flex flex-col justify-evenly'>
-                <h1 className='font-semibold text-2xl text-theme-color '>{"₹ "+productDetails?.Price}</h1>
-                 <p className='text-theme-color text-lg'>{productDetails?.ProductTitle}</p>
-                 <p className='text-theme-color text-lg'>{productDetails?.category}</p>
+                <div className='LikeShare flex relative'>
+                <h1 className='font-semibold text-3xl text-theme-color relative'>{"₹ "+productDetails?.Price}</h1>
+                   <div className='icons absolute right-3 top-2 flex gap-2'>
+                    <RWebShare
+                      data={{
+                        text: productDetails.Description,
+                        url: productDetails.Url,
+                        title: productDetails.ProductTitle,
+                      }} onClick={()=>console.log("shared successfully!")}>
+                    <button  className='focus:fill-teal-600  '>
+                      <ShareIcon/>
+                    </button>
+                    </RWebShare>
+                     <span onClick={()=>handleFavorite(productDetails)} className={` fill-theme-color ${like? 'fill-red-400' : "fill-theme-color "}  cursor-pointer`}>
+                      <HeartIcon/>
+                     </span>
+                   </div>
+                </div>
+                 <p className='text-theme-color text-xl'>{productDetails?.ProductTitle}</p>
+                 <p className='text-theme-color text-xl'>{productDetails?.category}</p>
                 <div className='locationAndDate  uppercase text-gray-600 flex gap-64'>
                     <h1 className='truncate text-[10px]'>{productDetails?.Location}</h1>
                     <h1 className=' text-[10px]'>{productDetails?.CreatedAt}</h1>
                     </div> 
               </div>
-              <div className='SellerName w-[390px] h-[170px] border-2 border-gray-300 bg-white marker:rounded pl-4 flex flex-col'>
+              <div className='SellerName w-[390px] h-[170px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly '>
                 <h1 className='font-semibold text-2xl text-theme-color underline underline-offset-4'>Seller Details</h1>
                  <p className='text-theme-color font-medium text-lg '>{"Name :   "+userDetails.username}</p>
                  <p className='text-theme-color font-medium text-lg '>{"Phone Number :  "+userDetails.phonenumber}</p>
@@ -103,6 +127,74 @@ const ViewProduct = () => {
                 <h1 className='truncate text-[13px] uppercase text-gray-600'>{productDetails?.Location}</h1>
                </div>
             </div>
+            <ToastContainer hideProgressBar={true} position="bottom-center" theme='dark' limit={1} />
+
+        </div>
+        {/* Mobile Screen */}
+        <div className='flex md:hidden YourProduct bg-whitesmoke  md:py-32  flex-col md:flex-row justify-center gap-10'>
+
+            <div className='Product-one flex flex-col gap-0.5'>
+            <div className='ProductPic relative w-full md:w-[800px] h-[200px] md:h-[500px] flex justify-center border-2 border-gray-300 bg-black rounded-md'>
+              <img className='self-center h-full w-[300px] md:w-[400px]' src={productDetails?.Url} />
+            </div>
+            <div className='ProductImgss h-[70px] w-full md:w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
+             <img className='w-14 h-14 rounded' src={productDetails?.Url}/>
+            </div>
+
+            <div className='ProductName w-full md:w-[390px] h-32 md:h-[170px] border-2 border-gray-300 bg-white rounded self-start pl-4 flex flex-col justify-evenly'>
+                <div className='LikeShare flex relative'>
+                <h1 className='font-semibold text-2xl text-theme-color relative'>{"₹ "+productDetails?.Price}</h1>
+                   <div className='icons absolute right-3 top-2 flex gap-2'>
+                   <RWebShare
+                      data={{
+                        text: productDetails.Description,
+                        url: productDetails.Url,
+                        title: productDetails.ProductTitle,
+                      }} onClick={()=>console.log("shared successfully!")}>
+                    <button  className='focus:fill-teal-600  '>
+                      <ShareIcon/>
+                    </button>
+                    </RWebShare>
+                    
+                     <span onClick={()=>handleFavorite(productDetails)} className={` fill-theme-color ${like? 'fill-red-400' : "fill-theme-color "}  cursor-pointer`}>
+                      <HeartIcon/>
+                     </span>
+                   </div>
+                </div>
+                 <p className='text-theme-color text-base md:text-2xl'>{productDetails?.ProductTitle}</p>
+                 <p className='text-theme-color text-base md:text-2xl'>{productDetails?.category}</p>
+                <div className='locationAndDate  uppercase text-gray-600 flex gap-64'>
+                    <h1 className='truncate text-[10px]'>{productDetails?.Location}</h1>
+                    <h1 className=' text-[10px]'>{productDetails?.CreatedAt}</h1>
+                    </div> 
+              </div>
+
+             <div className='ProductDesc h-[100px] w-full md:w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
+             <h1 className='font-semibold text-xl md:text-2xl text-theme-color '>Description</h1>
+             <p className='text-theme-color font-light'>{productDetails?.Description}</p>
+             </div>
+             <div className='SellerName w-full md:w-[390px] h-32 md:h-[170px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly md:justify-start'>
+                <h1 className='font-semibold text-xl md:text-2xl text-theme-color underline underline-offset-4'>Seller Details</h1>
+                 <p className='text-theme-color font-medium text-base md:text-lg '>{"Name :   "+userDetails.username}</p>
+                 <p className='text-theme-color font-medium text-base md:text-lg '>{"Phone Number :  "+userDetails.phonenumber}</p>
+                 <p className='text-theme-color font-medium text-base md:text-lg '>{"Email :  "+userDetails.email}</p>
+               </div>
+             <div className='RelatedProducts  md:h-[200px] w-full md:w-[800px] border-2 border-gray-300 bg-white rounded pl- flex flex-col justify-start overflow-scroll scroll whitespace-nowrap '>
+             <h1 className='text-lg font-semibold ml-3'>Related Ads</h1>
+                <div className='flex overflow-scroll scroll whitespace-nowrap'>
+                {relatedPost.map((post)=>( 
+              <div className='Post ml-4'>
+                <img className='h-24 w-[400px] md:h-[100px]  md:w-[200px] rounded-lg' src={post.Url}/>
+                <h1 className='md:truncate font-medium'>{post.ProductTitle}</h1>
+              </div>))}
+              </div>
+              
+             </div>
+           </div>
+              <div className='PostLocation w-full md:w-[390px] h-28 md:h-[140px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
+                <h1 className='font-semibold text-xl md:text-2xl text-theme-color '>Posted in</h1>
+                <h1 className='truncate text-[13px] uppercase text-gray-600'>{productDetails?.Location}</h1>
+               </div>
             <ToastContainer hideProgressBar={true} position="bottom-center" theme='dark' limit={1} />
 
         </div>

@@ -9,7 +9,9 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Editprofile = () => {
 
-    const [username, updateUsername] = useState('')
+  document.title= "OLX | EDIT PROFILE"
+
+  const [username, updateUsername] = useState('')
     const [phonenumber, updatePhoneNumber] = useState('')
     const [email, updateEmail] = useState('')
     const [userDoc, setUserDoc] = useState([])
@@ -63,7 +65,7 @@ const Editprofile = () => {
     }
   return (
     <div className='Editprofile '>
-      <div className="flex text-theme-color items-center justify-center md:py-28 ">
+      <div className="flex text-theme-color items-center justify-center md:py-28 z-50">
         
         <div className="Left flex flex-col w-full  md:w-[500px] py-4 border shadow-xl rounded ">
           <div className="flex text-3xl font-semibold m-4 gap-3">

@@ -9,11 +9,11 @@ import AddIcon from '../../Assets/AddIcon';
 import { useState } from 'react'
 import XIcon from '../../Assets/XIcon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faBook, faBox, faBuilding, faCamera, faCar, faMapMarkerAlt, faMessage, faMobileAlt, faQuestion, faEarth, faSignOut, faBolt, faSignOutAlt, faScrewdriver } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faBook, faBox, faBuilding, faCamera, faCar, faMapMarkerAlt, faMessage, faMobileAlt, faQuestion, faEarth, faSignOut, faScrewdriver } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../../Contexts/Context'
 import { faHeart, faNoteSticky } from '@fortawesome/free-regular-svg-icons'
 import { getAuth, signOut, } from "firebase/auth";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Loading from '../../Assets/Loading/Loading'
 
 function Header () {
@@ -23,6 +23,7 @@ function Header () {
   const [profile, setProfile] = useState(false) 
   const [language, setLanguage] = useState(false)
   const [edit, setEdit] =useState(false)
+  const navigate =useNavigate()
   const {user} = useContext(AuthContext)
   
     const displayName = user?.displayName ||'????'  // user displayName
@@ -36,6 +37,14 @@ function Header () {
            alert(error.message) 
           });
       } 
+      const sellBtn=()=>{
+        if (user) {
+          navigate('/createProduct')
+        }else{
+          alert("Sorry, You are not Logined. Please Log in")
+          navigate('/login')
+        }
+      }
 
   return (
     <div className='Header'>
@@ -67,7 +76,9 @@ function Header () {
        </div>
           <hr/>
           <ul className='cursor-pointer text-theme-color'>
+            <Link to={'createProduct'}>
             <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faCamera} className="pr-4 pl-2 "/>Start selling</li>
+            </Link>
             <Link to={'/favorites'}>
               <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faHeart} className="pr-4 pl-2 "/>My Favorites</li>
               </Link>
@@ -82,7 +93,7 @@ function Header () {
           </ul>
         </div>
         :
-        <div className="MobileView bg-white absolute mt-12 w-full h-full shadow-2xl">
+        <div className="MobileView bg-white absolute mt-12 w-full h-full z-40 shadow-2xl">
         <div className='Profile inline-flex p-6 -ml-2'>
          <img className='w-24 h-24 'src='https://statics.olx.in/external/base/img/avatar_empty_state.png'></img>
           <div className='Text flex flex-col ml-3'>
@@ -92,7 +103,9 @@ function Header () {
          </div>
             <hr/>
             <ul className='cursor-pointer text-theme-color'>
-              <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faCamera} className="pr-4 pl-2 "/>Start selling</li>
+            <Link to={user?'createProduct':'login'}>
+            <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faCamera} className="pr-4 pl-2 "/>Start selling</li>
+            </Link>
               <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faBook} className="pr-4 pl-2"/>My ADS</li>
               <li className='py-3 hover:bg-teal-200'><FontAwesomeIcon icon={faMessage} className="pr-4 pl-2"/>Chat</li>
                <hr/>
@@ -167,8 +180,8 @@ function Header () {
 
            <div className='LangSelect hidden md:flex px-10 mt-4 fill-theme-color text-theme-color' >
              <h1 className='appearance-none focus:outline-none option-bg text-base cursor-pointer font-medium uppercase' onClick={()=>{setLanguage(!language)}} >english</h1>
-            <span className={`mr-2 ${language?'rotate-180 ease-in-out duration-500': 'duration-500'} `}>
-             <ArrowBtn/>
+            <span className={`mr-2 ${language?'rotate-180 ease-in-out': ''} `}>
+            <ArrowBtn/> 
             </span>
 
             { language ?
@@ -232,15 +245,14 @@ function Header () {
           </div>:null}
          
          </div>
-         <div className="sellMenu fixed z-20 md:sticky bottom-6 mx-36 md:mx-6 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
-         <Link to={"/createProduct"}>
+        
+         <div onClick={sellBtn} className="sellMenu fixed z-20 md:sticky bottom-6 mx-36 md:mx-6 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
           <div className='sellMenu-in pt-2 px-7 flex rounded'>
             <span className='-ml-4'>
             <AddIcon/>
               </span>        
                 <span className='ml-1.5 -mt-1 uppercase font-bold'>sell</span>
           </div>
-         </Link>
          </div>
         </div>
       </div>
