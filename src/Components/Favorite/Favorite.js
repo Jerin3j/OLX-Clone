@@ -41,7 +41,7 @@ const Favorite = () => {
   return (
     
     <div className='Favorites flex flex-col '>
-      {favorites!=null?
+      {favorites?
         <div className='ProductsContainer flex flex-col items-center my-5 md:my-10 h-screen overflow-y-scroll drop-shadow-2xl'>
       {
           favorites.map((doc) => (

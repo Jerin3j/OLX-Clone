@@ -1,9 +1,7 @@
-import { fa4, fa5, fa6, faBatteryHalf, faIgloo } from '@fortawesome/free-solid-svg-icons'
-import {  } from "react-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import ArrowBtn from '../../Assets/ArrowBtn';
-import Create from '../Create/Create';
+import { FaFacebookF, FaTwitter, FaInstagram, FaPlayCircle } from "react-icons/fa";
+
 const FooterList = () => {
     const [click, setClick]= useState(false)
    const [click1, setClick1]= useState(false)
@@ -72,15 +70,15 @@ const FooterList = () => {
 
                 </ul>
                 </section>
-            <section className='S4 hidden md:block'>
+            <section className='S4 hidden md:flex flex-col '>
                 <h1 className='font-medium ml-2 text-theme-color'>FOLLOW US</h1>
-                <ul className='flex'>
-                    <li><FontAwesomeIcon className='text-theme-color' icon={fa4}/></li>
-                    <li><FontAwesomeIcon className='text-theme-color' icon={fa5}/></li>
-                    <li><FontAwesomeIcon className='text-theme-color' icon={fa6}/></li>
-                    <li><FontAwesomeIcon className='text-theme-color' icon={faIgloo}/></li>
+                <ul className='flex text-gray-600'>
+                    <li><FaFacebookF/></li>
+                    <li><FaInstagram/></li>
+                    <li><FaTwitter/></li>
+                    <li><FaPlayCircle/></li>
                 </ul>
-                <div className='StoresPng w-24 flex gap-2 mt-14'>
+                <div className='StoresPng w-24 flex gap-2 mt-7'>
         <img src="https://statics.olx.in/external/base/img/appstore_2x.webp" alt="App Store" />
         <img src="https://statics.olx.in/external/base/img/playstore_2x.webp" alt="Play Store" />
         </div>

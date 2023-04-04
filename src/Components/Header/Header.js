@@ -23,6 +23,7 @@ function Header () {
   const [profile, setProfile] = useState(false) 
   const [language, setLanguage] = useState(false)
   const [edit, setEdit] =useState(false)
+  const [inpValue, setInpValue] = useState("")
   const navigate =useNavigate()
   const {user} = useContext(AuthContext)
   
@@ -132,7 +133,7 @@ function Header () {
            <input type='text' className='text-base ml-7 truncate placeholder-slate-500 text-theme-color w-10/12' placeholder='Search city, area or locality'  />
             <span className=' flex tems-center -mt-6'>
              <SearchIcon />
-               <span className='ml-52 active:rotate-180 ease-in-out duration-300'>
+               <span className='ml-52 hover:rotate-180 ease-in-out duration-300'>
                 <ArrowBtn/>
                </span>
             </span>
@@ -142,9 +143,9 @@ function Header () {
            <span className='MobileView md:hidden flex h-5 w-5 mx-4'>
             <SearchIcon />
            </span>
-            <input onClick={()=>{setInput(true)}} type='text' className='text-base truncate placeholder-slate-500 text-theme-color w-full active:border-cyan-500' placeholder='Find Cars, Mobile Phones and more..' />
+            <input onChange={(e)=>setInpValue(e.target.value)} onClick={()=>{setInput(true)}} type='text' className='text-base truncate placeholder-slate-500 text-theme-color w-full active:border-cyan-500' placeholder='Find Cars, Mobile Phones and more..' />
          </div>
-          <div className='hidden md:flex items-center w-12 -ml-1 pl-3 fill-white font-normal rounded bg-theme-color cursor-pointer '>
+          <div onClick={()=>navigate(`${inpValue}`)} className='hidden md:flex items-center w-12 -ml-1 pl-3 fill-white font-normal rounded bg-theme-color cursor-pointer '>
             <SearchIcon2 />
           </div>
 
@@ -183,11 +184,10 @@ function Header () {
             <span className={`mr-2 ${language?'rotate-180 ease-in-out': ''} `}>
             <ArrowBtn/> 
             </span>
-
             { language ?
          <div className='ProfileOpt hidden md:flex items-center flex-col justify-evenly absolute z-20 bg-white right-80 w-60 h-20 mt-9 rounded-lg shadow-lg '>
-           <h1 className='uppercase font-medium'>English</h1>
-           <h1 className='uppercase font-medium'>Malyalam</h1>
+           <h1 className='uppercase font-medium cursor-pointer'>English</h1>
+           <h1 className='font-medium text-2xl cursor-pointer'>മലയാളം</h1>
 
           </div>:null}
          </div>
@@ -195,8 +195,6 @@ function Header () {
         <div className='LoginName'> 
         {user ?
         <div className='hidden md:flex DesktopLogined '>
-            {/* <FontAwesomeIcon icon={faMessage}/>
-            <FontAwesomeIcon icon={faNoteSticky}/> */}
            <div onClick={()=>{setProfile(!profile)}} onBlur={()=>{setProfile(false)}} onFocus={()=>{setProfile(false)}} className='ProfileIcon flex items-center gap-3'>
            {/* <img className='w-10 h-10 mt-3'src='https://statics.olx.in/external/base/img/avatar_1.png'></img> */}
            <div className='ProfileIcon-small flex mt-3 w-10 h-10 profile-pic self-center'>

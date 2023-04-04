@@ -1,5 +1,5 @@
 import { faBuilding, faEdit, faImage } from '@fortawesome/free-regular-svg-icons'
-import { faArrowCircleLeft, faArrowLeft, faBicycle, faCarAlt, faCarSide, faIgloo, faMobileScreen, faPenAlt, faRoadSpikes, faSnowman } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft, faArrowLeft, faBicycle, faBook, faBridgeCircleExclamation, faCarAlt, faCarSide, faDog, faIgloo, faMobileScreen, faNetworkWired, faPenAlt, faPersonDress, faRoadSpikes, faSnowman, faTable } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React,{ useContext, useState, useEffect } from 'react'
 import   './Create.css'
@@ -99,7 +99,7 @@ const Create = () => {
         <h1 className='font-semibold text-2xl -mt-1'>Post Your Ad</h1>
       </div>
 
-        <div className={`ProductTitle ${next? "hidden" :"block"} flex flex-col w-full md:w-[500px] `}>
+        <div className={`ProductTitle ${next? "hidden" :"block"} flex flex-col w-full md:w-[500px] mb-[82px]`}>
           <div className='PostItems md:mt-5  md:w-[500px] border-2 rounded shadow-xl flex flex-col'>
           <h1 className='uppercase text-lg self-center m-5 font-medium underline decoration-clone underline-offset-8 decoration-2 decoration-theme-color'>select a category</h1>
             <ul className=''>
@@ -108,19 +108,19 @@ const Create = () => {
                 <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faMobileScreen}/>Mobiles</li>
                 <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faRoadSpikes}/>Jobs</li>
                 <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBicycle}/>Bikes</li>
-                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faIgloo}/>Electronics & Appliances</li>
-                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faImage}/>Books, Sports & Hobbies</li>
-                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Furniture</li>
-                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Pets</li>
-                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Fashion</li>
-                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faCarAlt}/>Services</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBridgeCircleExclamation}/>Electronics & Appliances</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faBook}/>Books, Sports & Hobbies</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faTable}/>Furniture</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faDog}/>Pets</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faPersonDress}/>Fashion</li>
+                <li className='hover:bg-teal-500 text-lg' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faNetworkWired}/>Services</li>
                 <li className='hover:bg-teal-500 text-lg' contentEditable='true' onClick={(e)=>submitCategory(e)}><FontAwesomeIcon className='mr-4' icon={faEdit}/>Custom</li>
                 </ul>
             </div>
         </div>
         
        {next?
-       <div className={`MakeProduct ${load?" fixed self-center mt-20 " : ""}`}>
+       <div className={`MakeProduct ${load?"  self-center mt-20 " : ""}`}>
         <div className="PostBox flex flex-col  border rounded">
          { load?
            <Loading/>:null}

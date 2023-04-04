@@ -34,7 +34,7 @@ const Banner = () => {
             <h1 className=' text-theme-color'>Browse categories</h1>
             <h1 className='font-semibold text-sm underline decoration-2 underline-offset-2 hover:no-underline cursor-pointer text-theme-color'>See all</h1>
           </div>
-          <ul className='Categories flex uppercase pt-3 overflow-scroll scroll whitespace-nowrap  justify-start '>
+          <ul className='Categories flex uppercase pt-3 overflow-scroll scroll whitespace-nowrap justify-start '>
            <li className='flex flex-col mx-5 text-xs items-center mr-5'><img src='https://statics.olx.in/olxin/category_icons/v4/category_5_2x.png' className=' pb-2 w-14'/>OLXAuto (cars)</li>
            <li className='flex flex-col mx-5 text-xs items-center mr-5'><img src='https://statics.olx.in/olxin/category_icons/v4/category_3_2x.png' className='pb-2 w-14'/>properties</li>
            <li className='flex flex-col mx-5 text-xs items-center mr-5'><img src='https://statics.olx.in/olxin/category_icons/v4/category_1411_2x.png' className='pb-2 w-14 mt-1'/>mobiles</li>
