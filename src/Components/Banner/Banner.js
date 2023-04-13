@@ -20,7 +20,7 @@ const Banner = () => {
      { <div className='MobileView md:hidden p-4 mt-2 h-[165px] w-full bg-[#3176fe]'>
          <img src='https://statics.olx.in//olxin/autos/landingPage/v1/light/value_proposition_cmc_v5_480.gif'/>
         <div className='ButtonArea flex mt-3 justify-evenly gap-7 '>
-          <div onClick={()=>navigate('/favorites')} className='Button h-10 w-6/12  flex justify-center items-center rounded bg-white cursor-pointer'>
+          <div onClick={()=>navigate('/')} className='Button h-10 w-6/12  flex justify-center items-center rounded bg-white cursor-pointer'>
             <h1 className='text-center font-semibold text-sm text-theme-color'>Buy Car</h1>
           </div>
          

@@ -1,4 +1,4 @@
-import { addDoc, collection, getDoc, getDocs, getFirestore, limit, orderBy, query, where } from 'firebase/firestore'
+import { addDoc, collection, getDocs, getFirestore, limit, query, where } from 'firebase/firestore'
 import React, { useContext,useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
@@ -7,7 +7,6 @@ import HeartIcon from '../../Assets/HeartIcon'
 import ShareIcon from '../../Assets/ShareIcon'
 import { AuthContext, FirebaseContext } from '../../Contexts/Context'
 import { ProductContext } from '../../Contexts/ProductContext'
-import './ViewProduct.css'
 
 const ViewProduct = () => {
 
@@ -33,7 +32,7 @@ const ViewProduct = () => {
      })().catch((er)=>{
       console.log(er.message);
      })
-    },[])
+    },[db, productDetails])
   
     useEffect(()=>{
       const relatedPosts =async()=>{
@@ -44,7 +43,7 @@ const ViewProduct = () => {
        setRelatedPost(Posts);
       }
       relatedPosts()
-    }, [])
+    }, [db, productDetails])
     console.log(relatedPost);
 
     const handleFavorite= async(product)=>{
@@ -63,14 +62,14 @@ const ViewProduct = () => {
      productDetails ?
     <div className='DisplayProduct'>
       {/* Desktop screen */}
-        <div className='hidden md:flex bg-whitesmoke py-32  justify-center gap-10'>
+        <div className='hidden lg:flex bg-whitesmoke py-32  justify-center gap-10'>
 
             <div className='Product-one flex flex-col gap-0.5'>
             <div className='ProductPic relative w-[800px] h-[500px] flex justify-center border-2 border-gray-300 bg-black rounded-md'>
-              <img className='self-center h-full w-[400px]' src={productDetails?.Url} />
+              <img className='self-center h-full w-[400px]' src={productDetails?.Url} alt={productDetails?.ProductTitle} />
             </div>
             <div className='ProductImgss h-[70px] w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
-             <img className='w-14 h-14 rounded' src={productDetails?.Url}/>
+             <img className='w-14 h-14 rounded' src={productDetails?.Url} alt={productDetails?.ProductTitle}/>
             </div>
              <div className='ProductDesc h-[100px] w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
              <h1 className='font-semibold text-2xl text-theme-color '>Description</h1>
@@ -81,7 +80,7 @@ const ViewProduct = () => {
                 <div className='flex  overflow-x-scroll '>
                 {relatedPost.map((post)=>( 
               <div className='Post ml-4 overflow-hidden'>
-                <img className='h-[100px] w-[200px] rounded-lg' src={post.Url}/>
+                <img className='h-[100px] w-[200px] rounded-lg' src={post.Url} alt={productDetails?.ProductTitle}/>
                 <h1 className='truncate font-medium'>{post.ProductTitle}</h1>
               </div>))}
               </div>
@@ -96,9 +95,9 @@ const ViewProduct = () => {
                    <div className='icons absolute right-3 top-2 flex gap-2'>
                     <RWebShare
                       data={{
-                        text: productDetails.Description,
-                        url: productDetails.Url,
-                        title: productDetails.ProductTitle,
+                        text: productDetails.ProductTitle,
+                        url: 'olx-clone-reactt.web.app',
+                        title: productDetails.Description,
                       }} onClick={()=>console.log("shared successfully!")}>
                     <button  className='focus:fill-teal-600  '>
                       <ShareIcon/>
@@ -135,10 +134,10 @@ const ViewProduct = () => {
 
             <div className='Product-one flex flex-col gap-0.5'>
             <div className='ProductPic relative w-full md:w-[800px] h-[200px] md:h-[500px] flex justify-center border-2 border-gray-300 bg-black rounded-md'>
-              <img className='self-center h-full w-[300px] md:w-[400px]' src={productDetails?.Url} />
+              <img className='self-center h-full w-[300px] md:w-[400px]' src={productDetails?.Url} alt={productDetails?.ProductTitle}/>
             </div>
             <div className='ProductImgss h-[70px] w-full md:w-[800px] border-2 border-gray-300 bg-white rounded pl-4 flex flex-col justify-evenly'>
-             <img className='w-14 h-14 rounded' src={productDetails?.Url}/>
+             <img className='w-14 h-14 rounded' src={productDetails?.Url} alt={productDetails?.ProductTitle}/>
             </div>
 
             <div className='ProductName w-full md:w-[390px] h-32 md:h-[170px] border-2 border-gray-300 bg-white rounded self-start pl-4 flex flex-col justify-evenly'>
@@ -147,9 +146,9 @@ const ViewProduct = () => {
                    <div className='icons absolute right-3 top-2 flex gap-2'>
                    <RWebShare
                       data={{
-                        text: productDetails.Description,
-                        url: productDetails.Url,
-                        title: productDetails.ProductTitle,
+                        text: productDetails.ProductTitle,
+                        url: 'olx-clone-reactt.web.app',
+                        title: productDetails.Description,
                       }} onClick={()=>console.log("shared successfully!")}>
                     <button  className='focus:fill-teal-600  '>
                       <ShareIcon/>
@@ -184,7 +183,7 @@ const ViewProduct = () => {
                 <div className='flex overflow-scroll scroll whitespace-nowrap'>
                 {relatedPost.map((post)=>( 
               <div className='Post ml-4'>
-                <img className='h-24 w-[400px] md:h-[100px]  md:w-[200px] rounded-lg' src={post.Url}/>
+                <img className='h-24 md:h-[100px] md:w-[200px] rounded-lg' src={post.Url} alt={post.ProductTitle}/>
                 <h1 className='md:truncate font-medium'>{post.ProductTitle}</h1>
               </div>))}
               </div>

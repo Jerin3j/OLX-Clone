@@ -1,0 +1,143 @@
+[debug] [2023-04-12T16:31:11.746Z] ----------------------------------------------------------------------
+[debug] [2023-04-12T16:31:11.749Z] Command:       /home/user/.nvm/versions/node/v14.21.3/bin/node /home/user/.nvm/versions/node/v14.21.3/bin/firebase deploy
+[debug] [2023-04-12T16:31:11.749Z] CLI Version:   11.25.3
+[debug] [2023-04-12T16:31:11.750Z] Platform:      linux
+[debug] [2023-04-12T16:31:11.750Z] Node Version:  v14.21.3
+[debug] [2023-04-12T16:31:11.756Z] Time:          Wed Apr 12 2023 22:01:11 GMT+0530 (India Standard Time)
+[debug] [2023-04-12T16:31:11.756Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-12T16:31:11.885Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-12T16:31:11.886Z] > authorizing via signed-in user (jerinjj202@gmail.com)
+[debug] [2023-04-12T16:31:11.886Z] [iam] checking project olx-clone-reactt for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-04-12T16:31:11.888Z] > refreshing access token with scopes: []
+[debug] [2023-04-12T16:31:11.891Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-04-12T16:31:11.891Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-12T16:31:14.088Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-04-12T16:31:14.088Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-04-12T16:31:14.103Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions [none]
+[debug] [2023-04-12T16:31:14.104Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions x-goog-quota-user=projects/olx-clone-reactt
+[debug] [2023-04-12T16:31:14.104Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-04-12T16:31:23.652Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions 200
+[debug] [2023-04-12T16:31:23.653Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-04-12T16:31:23.654Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/olx-clone-reactt [none]
+[debug] [2023-04-12T16:31:24.715Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/olx-clone-reactt 200
+[debug] [2023-04-12T16:31:24.716Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/olx-clone-reactt {"projectId":"olx-clone-reactt","projectNumber":"405091397235","displayName":"olx-clone-reactjs","name":"projects/olx-clone-reactt","resources":{"hostingSite":"olx-clone-reactt","realtimeDatabaseInstance":"olx-clone-reactt-default-rtdb","storageBucket":"olx-clone-reactt.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_d54db83f-4af6-4100-9646-fa070e85751e"}
+[info] 
+[info] === Deploying to 'olx-clone-reactt'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-04-12T16:31:24.725Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions [none]
+[debug] [2023-04-12T16:31:24.725Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-04-12T16:31:27.170Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions 200
+[debug] [2023-04-12T16:31:27.171Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions {"name":"projects/405091397235/sites/olx-clone-reactt/versions/597c4b70936f8ad9","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[olx-clone-reactt]: beginning deploy... 
+[info] i  hosting[olx-clone-reactt]: found 8 files in build 
+[debug] [2023-04-12T16:31:27.187Z] [hosting] uploading with 200 concurrency
+[debug] [2023-04-12T16:31:28.213Z] [hosting] hash cache [YnVpbGQ] stored for 8 files
+[debug] [2023-04-12T16:31:28.214Z] [hosting][hash queue][FINAL] {"max":1016,"min":23,"avg":159.625,"active":0,"complete":8,"success":8,"errored":0,"retried":0,"total":8,"elapsed":1023}
+[debug] [2023-04-12T16:31:28.215Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/597c4b70936f8ad9:populateFiles [none]
+[debug] [2023-04-12T16:31:28.215Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/597c4b70936f8ad9:populateFiles {"files":{"/404.html":"b7bab6b83fa074653ff28c8d2a64135d3434575f70a12ab3d3ba8080461b9537","/asset-manifest.json":"3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242","/index.html":"7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0","/static/css/main.47a9a553.css.map":"c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6","/static/js/main.6b5f1463.js.LICENSE.txt":"7705ede6337a42741b7875419d83614c0f900438abf2f0e85131e3febee66614","/static/css/main.47a9a553.css":"8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf","/static/js/main.6b5f1463.js":"7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87","/static/js/main.6b5f1463.js.map":"666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217"}}
+[debug] [2023-04-12T16:31:30.244Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/597c4b70936f8ad9:populateFiles 200
+[debug] [2023-04-12T16:31:30.245Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/597c4b70936f8ad9:populateFiles {"uploadRequiredHashes":["3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242","7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0","c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6","8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf","7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87","666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files"}
+[debug] [2023-04-12T16:31:30.249Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242 [none]
+[debug] [2023-04-12T16:31:30.250Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242 [stream]
+[debug] [2023-04-12T16:31:30.253Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0 [none]
+[debug] [2023-04-12T16:31:30.253Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0 [stream]
+[debug] [2023-04-12T16:31:30.255Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6 [none]
+[debug] [2023-04-12T16:31:30.255Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6 [stream]
+[debug] [2023-04-12T16:31:30.256Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf [none]
+[debug] [2023-04-12T16:31:30.256Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf [stream]
+[debug] [2023-04-12T16:31:30.257Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T16:31:30.257Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T16:31:30.258Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T16:31:30.258Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] [2023-04-12T16:31:30.259Z] [hosting][populate queue][FINAL] {"max":2038,"min":2038,"avg":2038,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":2048}
+[debug] [2023-04-12T16:31:30.260Z] [hosting] uploads queued: 6
+[debug] [2023-04-12T16:31:33.925Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0 200
+[debug] [2023-04-12T16:31:33.926Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0 [stream]
+[debug] [2023-04-12T16:31:34.072Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242 200
+[debug] [2023-04-12T16:31:34.073Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242 [stream]
+[debug] [2023-04-12T16:31:34.076Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6 200
+[debug] [2023-04-12T16:31:34.077Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6 [stream]
+[debug] [2023-04-12T16:31:51.744Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf 200
+[debug] [2023-04-12T16:31:51.745Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf [stream]
+[debug] [2023-04-12T16:32:00.653Z] [uploadQueue] Retrying task 7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87
+[debug] [2023-04-12T16:32:00.655Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T16:32:00.656Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T16:32:31.455Z] [uploadQueue] Retrying task 7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87
+[debug] [2023-04-12T16:32:31.457Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T16:32:31.457Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T16:33:03.057Z] [uploadQueue] Retrying task 7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87
+[debug] [2023-04-12T16:33:03.059Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T16:33:03.059Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T16:33:36.259Z] [uploadQueue] Retrying task 7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87
+[debug] [2023-04-12T16:33:36.261Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T16:33:36.261Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T16:33:48.750Z] [uploadQueue] Retrying task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T16:33:48.752Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T16:33:48.752Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] [2023-04-12T16:34:12.662Z] [uploadQueue] Retrying task 7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87
+[debug] [2023-04-12T16:34:12.664Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T16:34:12.664Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] Task 7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 failed: retries exhausted after 6 attempts, with error: Timeout reached making request to https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87
+[debug] [2023-04-12T16:34:42.666Z] [hosting][upload queue][FINAL] {"max":21496,"min":3679,"avg":8208,"active":1,"complete":5,"success":4,"errored":1,"retried":6,"total":6,"elapsed":192420}
+[debug] [2023-04-12T16:36:07.654Z] [uploadQueue] Retrying task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T16:36:07.656Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T16:36:07.656Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] [2023-04-12T16:38:27.355Z] [uploadQueue] Retrying task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T16:38:27.357Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T16:38:27.357Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] [2023-04-12T16:40:48.659Z] [uploadQueue] Retrying task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T16:40:48.661Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T16:40:48.661Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] [2023-04-12T16:43:13.161Z] [uploadQueue] Retrying task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T16:43:13.163Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T16:43:13.163Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] Task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 failed: retries exhausted after 6 attempts, with error: Timeout reached making request to https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/597c4b70936f8ad9/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T17:12:05.056Z] ----------------------------------------------------------------------
+[debug] [2023-04-12T17:12:05.059Z] Command:       /home/user/.nvm/versions/node/v14.21.3/bin/node /home/user/.nvm/versions/node/v14.21.3/bin/firebase deploy
+[debug] [2023-04-12T17:12:05.059Z] CLI Version:   11.25.3
+[debug] [2023-04-12T17:12:05.059Z] Platform:      linux
+[debug] [2023-04-12T17:12:05.059Z] Node Version:  v14.21.3
+[debug] [2023-04-12T17:12:05.060Z] Time:          Wed Apr 12 2023 22:42:05 GMT+0530 (India Standard Time)
+[debug] [2023-04-12T17:12:05.060Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-12T17:12:05.164Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-12T17:12:05.164Z] > authorizing via signed-in user (jerinjj202@gmail.com)
+[debug] [2023-04-12T17:12:05.165Z] [iam] checking project olx-clone-reactt for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-04-12T17:12:05.167Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions [none]
+[debug] [2023-04-12T17:12:05.168Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions x-goog-quota-user=projects/olx-clone-reactt
+[debug] [2023-04-12T17:12:05.168Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-04-12T17:12:07.062Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions 200
+[debug] [2023-04-12T17:12:07.062Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-clone-reactt:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-04-12T17:12:07.063Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/olx-clone-reactt [none]
+[debug] [2023-04-12T17:12:08.275Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/olx-clone-reactt 200
+[debug] [2023-04-12T17:12:08.275Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/olx-clone-reactt {"projectId":"olx-clone-reactt","projectNumber":"405091397235","displayName":"olx-clone-reactjs","name":"projects/olx-clone-reactt","resources":{"hostingSite":"olx-clone-reactt","realtimeDatabaseInstance":"olx-clone-reactt-default-rtdb","storageBucket":"olx-clone-reactt.appspot.com","locationId":"asia-south1"},"state":"ACTIVE","etag":"1_d54db83f-4af6-4100-9646-fa070e85751e"}
+[info] 
+[info] === Deploying to 'olx-clone-reactt'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-04-12T17:12:08.288Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions [none]
+[debug] [2023-04-12T17:12:08.288Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-04-12T17:12:11.141Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions 200
+[debug] [2023-04-12T17:12:11.141Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/olx-clone-reactt/versions {"name":"projects/405091397235/sites/olx-clone-reactt/versions/65c0c0e829b8f605","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[olx-clone-reactt]: beginning deploy... 
+[info] i  hosting[olx-clone-reactt]: found 8 files in build 
+[debug] [2023-04-12T17:12:11.158Z] [hosting] uploading with 200 concurrency
+[debug] [2023-04-12T17:12:11.163Z] [hosting] hash cache [YnVpbGQ] stored for 8 files
+[debug] [2023-04-12T17:12:11.163Z] [hosting][hash queue][FINAL] {"max":1,"min":0,"avg":0,"active":0,"complete":8,"success":8,"errored":0,"retried":0,"total":8,"elapsed":2}
+[debug] [2023-04-12T17:12:11.164Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/65c0c0e829b8f605:populateFiles [none]
+[debug] [2023-04-12T17:12:11.164Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/65c0c0e829b8f605:populateFiles {"files":{"/404.html":"b7bab6b83fa074653ff28c8d2a64135d3434575f70a12ab3d3ba8080461b9537","/asset-manifest.json":"3feb67fb03665fd8af4fd1e54cca63d626d7a2e7b0decb678994d64f0aec1242","/index.html":"7a11935d56d8d189bd5a25849171dbe5bd587591d2ed75637bfe19eef5479ca0","/static/css/main.47a9a553.css":"8ebeebf78d8dbcbec1bb71701d4339fa70a5d251d81ae96eb497a074da3d8ebf","/static/css/main.47a9a553.css.map":"c12e277fc8e62034744693e6ca69d70768f7945eea10832e0ac1d6f72939b1a6","/static/js/main.6b5f1463.js":"7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87","/static/js/main.6b5f1463.js.LICENSE.txt":"7705ede6337a42741b7875419d83614c0f900438abf2f0e85131e3febee66614","/static/js/main.6b5f1463.js.map":"666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217"}}
+[debug] [2023-04-12T17:12:13.189Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/65c0c0e829b8f605:populateFiles 200
+[debug] [2023-04-12T17:12:13.190Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/405091397235/sites/olx-clone-reactt/versions/65c0c0e829b8f605:populateFiles {"uploadRequiredHashes":["7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87","666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files"}
+[debug] [2023-04-12T17:12:13.194Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [none]
+[debug] [2023-04-12T17:12:13.194Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T17:12:13.196Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T17:12:13.197Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]
+[debug] [2023-04-12T17:12:13.198Z] [hosting][populate queue][FINAL] {"max":2032,"min":2032,"avg":2032,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":2036}
+[debug] [2023-04-12T17:12:13.198Z] [hosting] uploads queued: 2
+[debug] [2023-04-12T17:12:20.895Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 200
+[debug] [2023-04-12T17:12:20.896Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/7f9b8ba9113986b42be2dd65a7ec0c92d63ed7f55e2b6c689fda20e559e37f87 [stream]
+[debug] [2023-04-12T17:14:32.154Z] [uploadQueue] Retrying task 666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217
+[debug] [2023-04-12T17:14:32.156Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [none]
+[debug] [2023-04-12T17:14:32.157Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/olx-clone-reactt/versions/65c0c0e829b8f605/files/666fcac85ceb101d5bb258f74e260951c89cdd43d3300ec2a9e24f7443dda217 [stream]

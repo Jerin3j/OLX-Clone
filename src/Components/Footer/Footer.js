@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
                 <h1 className='font-medium text-xs '>Other Countries</h1>
                 <h1 className='text-sm font-extralight '>pakistan-south africa-Indonasia</h1>
             </div>
-            <div className='flex gap-1 mt-5 md:mt-10'>
+            <div className='flex gap-1 mt-5 lg:mt-10'>
             <h1 className='text-xs'>made by</h1>
             <Link to={'https://github.com/Jerin3j/'}>
             <h1 className='text-xs hover:text-blue-400 cursor-pointer'>Jerin 3J</h1>

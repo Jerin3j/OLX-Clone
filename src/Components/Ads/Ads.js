@@ -15,7 +15,7 @@ const Ads = () => {
 
       <div className='GetApp flex flex-col ml-6 justify-center'>
         <h1 className='uppercase font-bold '>get your app today</h1>
-        <div className='StoresPng w-28  flex gap-3 '>
+        <div className='StoresPng w-28  flex flex-col lg:flex-row gap-3 '>
         <img src="https://statics.olx.in/external/base/img/appstore_2x.webp"  className='cursor-pointer' alt="App Store" />
         <img src="https://statics.olx.in/external/base/img/playstore_2x.webp" className='cursor-pointer' alt="Play Store" />
         </div>

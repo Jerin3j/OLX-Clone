@@ -13,7 +13,6 @@ import Post  from './Contexts/ProductContext';
 import Loading from './Assets/Loading/Loading';
 import FavoritePage from './Pages/FavoritePage';
 import NotFound from './Components/404 Error/NotFound';
-import Products from './Components/Products/Products';
 function App() {
 
   const {user, setUser} = useContext(AuthContext)

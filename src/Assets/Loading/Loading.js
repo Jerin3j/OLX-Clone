@@ -1,12 +1,11 @@
-import './Loading.css'
 import React from 'react'
-import {ClipLoader} from 'react-spinners'; 
 
 const Loading = () => {
 return (
-<>
-<ClipLoader className=' absolute left-36 md:left-1/2 top-1/2 md:top-1/2 -translate-x-1/2 flex'  size={100} />
-</>   )
+<div class="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
+   <div class="animate-spin rounded-full h-24 w-24 md:h-36 md:w-36 border-t-2 border-b-2 border-theme-color"></div>
+</div>
+  )
   }
 
 export default Loading

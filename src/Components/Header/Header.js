@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import './Header.css'
 import OlxLogo from '../../Assets/OlxLogo'
 import SearchIcon  from '../../Assets/SearchIcon'
@@ -11,10 +11,10 @@ import XIcon from '../../Assets/XIcon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBook, faBox, faBuilding, faCamera, faCar, faMapMarkerAlt, faMessage, faMobileAlt, faQuestion, faEarth, faSignOut, faScrewdriver } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../../Contexts/Context'
-import { faHeart, faNoteSticky } from '@fortawesome/free-regular-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { getAuth, signOut, } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom'
-import Loading from '../../Assets/Loading/Loading'
+import Draggable from 'react-draggable';
 
 function Header () {
 
@@ -61,7 +61,7 @@ function Header () {
         {/* Mobile View Navbar */}
         {nav?
          user ?
-          <div className={`MobileView bg-white absolute  mt-12 w-full h-full shadow-xl rounded z-40 ${nav? `slide` : null}`} >
+          <div className={`MobileView bg-white absolute  mt-12 w-full  shadow-xl rounded z-40 ${nav? `slide` : null}`} >
       <div className='Profile inline-flex p-6 -ml-2'>
        <div className='ProfileIcon flex w-32 h-20 profile-pic self-center'>
        <h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
@@ -94,9 +94,9 @@ function Header () {
           </ul>
         </div>
         :
-        <div className="MobileView bg-white absolute mt-12 w-full h-full z-40 shadow-2xl">
+        <div className="MobileView bg-white absolute mt-12 h-full w-full z-40 shadow-xl">
         <div className='Profile inline-flex p-6 -ml-2'>
-         <img className='w-24 h-24 'src='https://statics.olx.in/external/base/img/avatar_empty_state.png'></img>
+         <img className='w-24 h-24 'src='https://statics.olx.in/external/base/img/avatar_empty_state.png' alt='profile'></img>
           <div className='Text flex flex-col ml-3'>
            <h1 className='font-medium text-xl mt-3 text-theme-color'>Welcome to OLX!</h1>
            <p className='text-left text-[13px] mt-1 text-gray-400'>Take charge of your buying and selling journy.</p>
@@ -154,7 +154,7 @@ function Header () {
           <div className='MobileView transition-all ease-in-out absolute md:hidden w-full h-full bg-white'>
            <div className='flex justify-between'>
               <FontAwesomeIcon onClick={()=>{setInput(false)}} icon={faArrowLeft} className='p-5 h-7' />
-                <h1 className='SearchText mt-4 mr-2 font-semibold underline decoration-2 underline-offset-4 hover:no-underline cursor-pointer truncate fill-theme-color text-theme-color'>Search</h1>
+                <h1 onClick={()=>navigate('/notFound')} className='SearchText mt-4 mr-2 font-semibold underline decoration-2 underline-offset-4 hover:no-underline cursor-pointer truncate fill-theme-color text-theme-color'>Search</h1>
             </div>
             <div className='flex flex-col justify-between'>
               <div className='searchItems flex mt-3 py-2 w-[96%] mx-2  border-theme-color  bg-white border-2 outline-none rounded '>
@@ -243,15 +243,16 @@ function Header () {
           </div>:null}
          
          </div>
-        
-         <div onClick={sellBtn} className="sellMenu fixed z-20 md:sticky bottom-6 mx-36 md:mx-6 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
-          <div className='sellMenu-in pt-2 px-7 flex rounded'>
+         <Draggable axis='y' touchAction="pan-y">
+         <div className="sellMenu fixed z-40 md:sticky bottom-6 mx-36 md:mx-6 md:mt-1 h-12 w-24 cursor-pointer fill-theme-color text-theme-color">
+          <div onTouchEnd={sellBtn} onClick={sellBtn} className='sellMenu-in pt-2 px-7 flex rounded'>
             <span className='-ml-4'>
             <AddIcon/>
               </span>        
-                <span className='ml-1.5 -mt-1 uppercase font-bold'>sell</span>
+                <span className='ml-1.5 -mt-1 uppercase font-bold '>sell</span>
           </div>
          </div>
+         </Draggable>
         </div>
       </div>
       <div className='hidden md:flex bg-white h-8 mt-1 shadow border-black items-center justify-evenly' >
@@ -260,13 +261,13 @@ function Header () {
             <ArrowBtn/>
            </div>  
            <ul className='flex text-theme-color xl:-ml-64 truncate cursor-pointer'>
-            <li className='font-light text-sm truncate'>Cars</li>
-            <li className='font-light text-sm truncate'>Motor Cycles</li>
-            <li className='font-light text-sm truncate'>Mobile Phones</li>
-            <li className='font-light text-sm truncate'>For Sale: House & Appartments</li>
-            <li className='font-light text-sm truncate'>Scooters</li>
-            <li className='font-light text-sm truncate'>Commercial & Other Vechiles</li>
-            <li className='font-light text-sm truncate'>For Rent: House & Appartments</li>
+            <li className='font-light active:font-normal text-sm truncate'>Cars</li>
+            <li className='font-light active:font-normal text-sm truncate'>Motor Cycles</li>
+            <li className='font-light active:font-normal text-sm truncate'>Mobile Phones</li>
+            <li className='font-light active:font-normal text-sm truncate'>For Sale: House & Appartments</li>
+            <li className='font-light active:font-normal text-sm truncate'>Scooters</li>
+            <li className='font-light active:font-normal text-sm truncate'>Commercial & Other Vechiles</li>
+            <li className='font-light active:font-normal text-sm truncate'>For Rent: House & Appartments</li>
             </ul>
       </div>
     </div>

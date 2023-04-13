@@ -1,16 +1,13 @@
-import { faBuilding, faEdit, faImage } from '@fortawesome/free-regular-svg-icons'
-import { faArrowCircleLeft, faArrowLeft, faBicycle, faBook, faBridgeCircleExclamation, faCarAlt, faCarSide, faDog, faIgloo, faMobileScreen, faNetworkWired, faPenAlt, faPersonDress, faRoadSpikes, faSnowman, faTable } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faArrowLeft, faBicycle, faBook, faBridgeCircleExclamation, faCarAlt, faDog, faMobileScreen, faNetworkWired, faPersonDress, faRoadSpikes, faTable } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React,{ useContext, useState, useEffect } from 'react'
+import React,{ useContext, useState } from 'react'
 import   './Create.css'
-import { Navigate, useNavigate } from 'react-router-dom'
-import ArrowBtn from '../../Assets/ArrowBtn'
+import { useNavigate } from 'react-router-dom'
 import { AuthContext, FirebaseContext } from '../../Contexts/Context'
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import Loading from '../../Assets/Loading/Loading'
-import Login from '../Login/Login'
-import Footer from '../Footer/Footer'
+import DotLoading from '../../Assets/Loading/DotLoading'
 
 
 const Create = () => {
@@ -26,9 +23,6 @@ const Create = () => {
   console.log(load);
   
 
-  // const [next, setNext] = useState("")
-  // const [next, setNext] = useState("")
-  
   const [category, setCategory] = useState()
   const [next, setNext] = useState(false)
   const [confirm, setConfirm] = useState()
@@ -96,7 +90,7 @@ const Create = () => {
     <div className='CreateProducts flex flex-col items-center mb-20'> 
       <div className="backBtn text-xl gap-4 text-theme-color bg-whitesmoke flex pt-7 pl-7 h-[74px] w-full">
         <FontAwesomeIcon icon={faArrowLeft} onClick={()=>  window.confirm("Are you sure you want to leave? Your progress will not be saved")? navigate(-1):""  }/>
-        <h1 className='font-semibold text-2xl -mt-1'>Post Your Ad</h1>
+        <h1 className='font-semibold text-xl md:text-2xl -mt-1'>Post Your Ad</h1>
       </div>
 
         <div className={`ProductTitle ${next? "hidden" :"block"} flex flex-col w-full md:w-[500px] mb-[82px]`}>
@@ -120,32 +114,32 @@ const Create = () => {
         </div>
         
        {next?
-       <div className={`MakeProduct ${load?"  self-center mt-20 " : ""}`}>
-        <div className="PostBox flex flex-col  border rounded">
-         { load?
-           <Loading/>:null}
+       <div className={`MakeProduct self-center mt-16 ${load?"   " : ""}`}>
+        { load?
+     <DotLoading/>:null}
+           <div className="PostBox flex flex-col  border rounded">
           <div className="CategoryShow flex flex-col">
-            <h1 className="font-semibold text-2xl uppercase  mx-5 my-2 self-center">Selected category</h1>
+            <h1 className="font-semibold text-xl md:text-2xl uppercase  mx-5 my-2 self-center">Selected category</h1>
             <div className="flex justify-between  mx-5 mb-1">
               <h1 className="text-md ">Category selected - {category=="Custom" ? title : category}</h1>
               <h1 className="font-semibold underline hover:no-underline cursor-pointer " onClick={()=>setNext(!next)}>Change</h1>
             </div>
             <hr/>
             <div className="PostDetails text-theme-color mx-2 md:mx-5 md:w-[800px]">
-              <h1 className='uppercase font-extrabold text-xl mt-10'>Include some brands</h1>
+              <h1 className='uppercase font-extrabold text-lg md:text-xl mt-10'>Include some brands</h1>
                <div className="flex flex-col">
               <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Ad title *</h1>
                <input onChange={(e)=>{setTitle(e.target.value)}} type="text" className="rounded h-10 border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 " required/>
              <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Description *</h1>
               <textarea onChange={(e)=>{setDesc(e.target.value)}} type="text" className="rounded border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 h-36 text-left " />
              <hr/>
-             <h1 className='uppercase font-extrabold text-xl '>set a price</h1>
+             <h1 className='uppercase font-extrabold text-lg md:text-xl '>set a price</h1>
               <h1 className='font-medium text-md pl-0.5 text-gray-500 '>Price *</h1>
                <input onChange={(e)=>{setPrice(e.target.value)}} type="text" className="rounded h-10 border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 " />
                 <hr />
                 
                 <div className="imageInput flex flex-col my-10 justify-around">
-                <h1 className='uppercase font-extrabold text-xl'>Upload up to 6 photos</h1>
+                <h1 className='uppercase font-extrabold text-lg md:text-xl'>Upload up to 6 photos</h1>
                 <div className="flex gap-4  overflow-x-scroll scroll">
                 {image?
                   image.map((img, id)=>(
@@ -162,11 +156,11 @@ const Create = () => {
                 </div>
 
                 <hr/>
-                <h1 className='uppercase font-extrabold text-xl'>Confirm your location</h1>
+                <h1 className='uppercase font-extrabold text-lg md:text-xl'>Confirm your location</h1>
                 <input onChange={(e)=>{setLocation(e.target.value)}} type="text" className="rounded h-10 border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 w-full md:w-52" />
                 <hr/>
                 <div className="UserDetails flex flex-col pt-14">
-                <h1 className='uppercase font-extrabold text-xl'>Review your details</h1>
+                <h1 className='uppercase font-extrabold text-lg md:text-xl'>Review your details</h1>
                 
               <h1 className='font-thin text-md pl-0.5 text-theme-color'>Name</h1>
                 <input defaultValue={user?.displayName} type="text" className="rounded h-10 capitalize border border-gray-300 focus:border-teal-400 focus:border-2 pl-3 w-full md:w-52" />

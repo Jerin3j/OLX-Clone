@@ -1,10 +1,9 @@
-import React, { useContext,createContext, useState, useEffect} from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 import HeartIcon from '../../Assets/HeartIcon'
-import './Products.css'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { AuthContext, FirebaseContext } from '../../Contexts/Context'
-import { addDoc, collection, getDocs, getFirestore, limit, orderBy, query, startAt } from "firebase/firestore";
+import { addDoc, collection, getDocs, getFirestore, limit, orderBy, query } from "firebase/firestore";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { ProductContext } from '../../Contexts/ProductContext'
@@ -13,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
   const [productData, setProductData] = useState([])
-  const [loadProducts, setLoadProducts] = useState(10)
+  const [loadProducts, setLoadProducts] = useState(12)
   const app = useContext(FirebaseContext)
   const db = getFirestore(app)
   const {setProductDetails} =useContext(ProductContext);
@@ -33,7 +32,7 @@ const Products = () => {
       }
      }   
    getUsersData()
-   },[loadProducts])
+   },[db, loadProducts])
    
    const handleFavorite= async(product)=>{
     if(user){
@@ -47,7 +46,7 @@ const Products = () => {
    }
 
    const loadMore = () => {
-    setLoadProducts((prevLoadProducts) => prevLoadProducts + 2);
+    setLoadProducts((prevLoadProducts) => prevLoadProducts + 3);
   };
 
   return (
@@ -79,25 +78,27 @@ const Products = () => {
               </li> 
               ))
               }
-              <li className='productBox mr-3.5 mb-3 md:w-72 md:h-[263px] w-5/12  border border-slate-300 rounded relative '>
+
+<           li className='productBox mr-3.5 mb-3 md:w-72 md:h-[268px] w-5/12  border border-slate-300 rounded relative '>
               <div className='ItemPicture flex justify-center h-36'>
-                  <img className=' md:left-10  min-h-full max-h-full max-w-full ' src='https://apollo-singapore.akamaized.net/v1/files/4og1a1ccffpm3-IN/image;s=300x600;q=60' alt='Product_Image'/>
-                  </div>
+               <img className=' md:left-10  min-h-full max-h-full max-w-full ' src='https://apollo-singapore.akamaized.net/v1/files/4og1a1ccffpm3-IN/image;s=300x600;q=60' alt='iphone13'/>
+                </div>
                   <div className='ItemText flex flex-col justify-between'>
                     <label>
                    <span className='absolute top-4 z-10 px-1 py-0.5 h-5 text-[10px] md:text-xs font-bold md:font-medium uppercase bg-yellow-400'>featured</span>
-                   </label>
-                    <span className='text-2xl mt-3 text-theme-color font-semibold'>₹ 13,500</span>
-                    <span className='truncate mt-2 text-sm text-gray-500 font-normal'>Brand new apple mobiles on Rent and Emi 14 pro, 14 pro max and etc</span>
-                    <div className='mt-4 uppercase text-gray-600 flex justify-between'>
+                     </label>
+                    <span className='text-2xl mt-3 text-theme-color font-semibold truncate'>iPhone 13</span>  
+                    <span className='text-base text-theme-color font-semibold'>₹ 13,500</span>
+                    <span className='truncate  text-sm text-gray-500 font-normal'>Brand new apple mobiles on Rent and Emi 14 pro, 14 pro max and etc</span>
+                    <div className='mt-1 uppercase text-gray-600 flex justify-between'>
                     <span className='truncate text-[10px]'>Bangalore Airport Area, Bengaluru</span>
                     <span className='hidden md:block text-[10px]'>Today</span>
                     </div>
-                    <span className='absolute right-0 md:right-1 top-4 cursor-pointer fill-current active:fill-red-500 '>
+                    <span onClick={()=>handleFavorite()} className='absolute right-0 md:right-1 top-4 cursor-pointer fill-gray-400 active:fill-pink-600 '>
                     <HeartIcon/>
                   </span>
                   </div>
-              </li>
+              </li> 
             </ul>
             <ToastContainer hideProgressBar={true} position="bottom-center" theme='dark' limit={1} />
            <div onClick={loadMore}  className='self-center -translate-x-2/4 Button cursor-pointer border-2 hover:border-4 border-theme-color h-10 w-28 ml-40 flex items-center justify-center rounded'>

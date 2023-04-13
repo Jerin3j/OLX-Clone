@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { app } from "../../Firebase/config";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Loading from '../../Assets/Loading/Loading';
-
+import {toast, ToastContainer} from 'react-toastify'
 
 
 const Login = () => {
@@ -14,11 +14,12 @@ const Login = () => {
     const navigate = useNavigate()
 
   const handleLogin = () =>{
+    setLoading(true);
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, loginEmail, loginPassword)
     .then(()=>{
-      setLoading(true);
-      alert("Logined")
+      toast('Logined')
+      setLoading(false)
       navigate('/')
     
     })
@@ -50,9 +51,10 @@ const Login = () => {
          <Link to='/signup'>
          <h1 className='text-theme-color my-3 font-medium text-center decoration-2 underline-offset-4 hover:underline cursor-pointer'>Sign Up</h1>
          </Link>
-           
              </div>
-    </div>
+            <ToastContainer hideProgressBar={true} position="bottom-center" theme='colored' limit={1} />
+
+        </div>
   )
 }
 

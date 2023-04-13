@@ -87,11 +87,11 @@ const FooterList = () => {
 
               {/* Mobile only */}
 
-                <section className='S1 md:hidden -mb-3 z-50'>
+                <section className='S1 md:hidden -mb-3'>
                 <h1 className='font-medium flex justify-between mx-5 md:hidden'>POPULAR LOCATIONS  <h1 onClick={()=>{setClick(!click)}} className='md:hidden'><ArrowBtn/></h1></h1>
                 
                 { click ?
-                <ul className='text-sm font-extralight flex flex-col leading-4 ml-4'>
+                <ul className='text-sm font-light flex flex-col leading-4 ml-4'>
                    {Lists.map((list)=>{  
                      if (list.id===1) {
                       return(
@@ -107,7 +107,7 @@ const FooterList = () => {
                 <h1 className='font-medium flex justify-between mx-5 md:hidden'>TRENDING LOCATIONS <h1 onClick={()=>{setClick1(!click1)}} className='md:hidden'><ArrowBtn/></h1></h1>
                 
                  { click1 ?
-                <ul className='text-sm font-extralight flex flex-col leading-4 ml-4'>
+                <ul className='text-sm font-light flex flex-col leading-4 ml-4'>
                    {Lists.map((list)=>{  
                      if (list.id===2) {
                       return(
@@ -123,7 +123,7 @@ const FooterList = () => {
                 <h1 className='font-medium flex justify-between mx-5 md:hidden'>ABOUT US <h1 onClick={()=>{setClick2(!click2)}} className='md:hidden'><ArrowBtn/></h1></h1>
                
                 { click2 ?
-                <ul className='text-sm font-extralight flex flex-col leading-4 ml-4'>
+                <ul className='text-sm font-light flex flex-col leading-4 ml-4'>
                    {Lists.map((list)=>{  
                      if (list.id===3) {
                       return(
@@ -138,7 +138,7 @@ const FooterList = () => {
                 <h1 className='font-medium flex justify-between mx-5 mb-4 md:hidden'>OLX <h1 onClick={()=>{setClick3(!click3)}} className='md:hidden'><ArrowBtn/></h1></h1>
                 
                  { click3 ?
-                <ul className='text-sm font-extralight flex flex-col leading-4 ml-4'>
+                <ul className='text-sm font-light flex flex-col leading-4 ml-4'>
                    {Lists.map((list)=>{  
                      if (list.id===4) {
                       return(
