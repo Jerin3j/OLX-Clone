@@ -81,14 +81,14 @@ const Products = () => {
 
 <           li className='productBox mr-3.5 mb-3 md:w-72 md:h-[268px] w-5/12  border border-slate-300 rounded relative '>
               <div className='ItemPicture flex justify-center h-36'>
-               <img className=' md:left-10  min-h-full max-h-full max-w-full ' src='https://apollo-singapore.akamaized.net/v1/files/4og1a1ccffpm3-IN/image;s=300x600;q=60' alt='iphone13'/>
+               <img className=' md:left-10  min-h-full max-h-full max-w-full ' src='https://firebasestorage.googleapis.com/v0/b/olx-clone-reactt.appspot.com/o/Products%2FiPhone1333.png?alt=media&token=4ebba9dd-b9ac-41fa-bc47-c193a2f2933d' alt='iphone13'/>
                 </div>
                   <div className='ItemText flex flex-col justify-between'>
                     <label>
                    <span className='absolute top-4 z-10 px-1 py-0.5 h-5 text-[10px] md:text-xs font-bold md:font-medium uppercase bg-yellow-400'>featured</span>
                      </label>
                     <span className='text-2xl mt-3 text-theme-color font-semibold truncate'>iPhone 13</span>  
-                    <span className='text-base text-theme-color font-semibold'>₹ 13,500</span>
+                    <span className='text-base text-theme-color font-semibold'>₹ 43,700</span>
                     <span className='truncate  text-sm text-gray-500 font-normal'>Brand new apple mobiles on Rent and Emi 14 pro, 14 pro max and etc</span>
                     <div className='mt-1 uppercase text-gray-600 flex justify-between'>
                     <span className='truncate text-[10px]'>Bangalore Airport Area, Bengaluru</span>

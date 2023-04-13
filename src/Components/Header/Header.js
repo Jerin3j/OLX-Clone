@@ -126,8 +126,8 @@ function Header () {
             <OlxLogo widthHeight={'w-9 h-9 md:h-12 md:w-12'}/>
             </Link>
           </span>
-          {nav? null :<div className='MobileView md:hidden text-theme-color mt-4 ml-3'>
-          <h1 className='text-sm font-medium capitalize'>bangalore airport area, bengaluru <FontAwesomeIcon icon={faMapMarkerAlt}/></h1>
+          {nav? null :<div className='MobileView md:hidden text-theme-color mt-4 ml-48'>
+          <h1 className='text-[15px] font-semibold capitalize '>India <FontAwesomeIcon icon={faMapMarkerAlt}/></h1>
            </div> /* nav == true element not shows otherwise it shows*/}
          <div className='searchArea hidden md:block truncate mr-4 border-theme-color bg-white relative px-2 pt-3 border-2 outline-none rounded active:border-cyan-500 w-72 '>
            <input type='text' className='text-base ml-7 truncate placeholder-slate-500 text-theme-color w-10/12' placeholder='Search city, area or locality'  />

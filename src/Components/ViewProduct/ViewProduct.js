@@ -11,11 +11,12 @@ import { ProductContext } from '../../Contexts/ProductContext'
 const ViewProduct = () => {
 
   
-  const  {productDetails} = useContext(ProductContext)
+  const  {productDetails} = useContext(ProductContext) // to take user click to view product
+  const {setProductDetails} =useContext(ProductContext) //for viewing related posts on viewproduct page
   const {user} = useContext(AuthContext)
   const [userDetails, setuserDetails] = useState('')
   const [like, setLike] = useState(false)
-  const [relatedPost, setRelatedPost] = useState([])
+  const [relatedPost, setRelatedPost] = useState([])  
   const navigate = useNavigate();
   const  app = useContext(FirebaseContext)
   const db = getFirestore(app);
@@ -77,10 +78,10 @@ const ViewProduct = () => {
              </div>
              <div className='RelatedProducts h-[200px] w-[800px] border-2 border-gray-300 bg-white rounded pl- flex flex-col justify-start '>
              <h1 className='text-lg font-semibold ml-3'>Related Ads</h1>
-                <div className='flex  overflow-x-scroll '>
+                <div className='flex  overflow-x-scroll'>
                 {relatedPost.map((post)=>( 
-              <div className='Post ml-4 overflow-hidden'>
-                <img className='h-[100px] w-[200px] rounded-lg' src={post.Url} alt={productDetails?.ProductTitle}/>
+              <div className='Post ml-4 overflow-hidden border border-gray-200 rounded'>
+                <img onClick={()=>{setProductDetails(post); navigate('/viewProduct');}} className='h-[100px] w-[200px] rounded-lg' src={post.Url} alt={productDetails?.ProductTitle}/>
                 <h1 className='truncate font-medium'>{post.ProductTitle}</h1>
               </div>))}
               </div>
