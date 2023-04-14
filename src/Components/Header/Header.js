@@ -29,7 +29,6 @@ function Header () {
   
     const displayName = user?.displayName ||'????'  // user displayName
    const len = displayName.length -1   // displayName length-1 
-   console.log(len);
   
      const handleLogout = () =>{
       const auth = getAuth();
@@ -61,7 +60,7 @@ function Header () {
         {/* Mobile View Navbar */}
         {nav?
          user ?
-          <div className={`MobileView bg-white absolute  mt-12 w-full  shadow-xl rounded z-40 ${nav? `slide` : null}`} >
+          <div className={`MobileView bg-white absolute  mt-12 w-full  shadow-xl rounded z-50 ${nav? `slide` : null}`} >
       <div className='Profile inline-flex p-6 -ml-2'>
        <div className='ProfileIcon flex w-32 h-20 profile-pic self-center'>
        <h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
@@ -94,7 +93,7 @@ function Header () {
           </ul>
         </div>
         :
-        <div className="MobileView bg-white absolute mt-12 h-full w-full z-40 shadow-xl">
+        <div className="MobileView bg-white absolute mt-12 h-full w-full z-50 shadow-xl">
         <div className='Profile inline-flex p-6 -ml-2'>
          <img className='w-24 h-24 'src='https://statics.olx.in/external/base/img/avatar_empty_state.png' alt='profile'></img>
           <div className='Text flex flex-col ml-3'>

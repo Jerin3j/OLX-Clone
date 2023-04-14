@@ -13,6 +13,7 @@ import DotLoading from '../../Assets/Loading/DotLoading'
 const Create = () => {
 
   document.title= "OLX | CREATE"
+  window.scrollTo(0, 0)
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
   const [price, setPrice] = useState("")
@@ -20,8 +21,6 @@ const Create = () => {
   const [location, setLocation] = useState("")
   const [url, setUrl] = useState(null)
   const [load, setLoad] = useState(false)
-  console.log(load);
-  
 
   const [category, setCategory] = useState()
   const [next, setNext] = useState(false)

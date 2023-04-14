@@ -43,42 +43,32 @@ const Signup = () => {
       console.log("auth : "+error.message);
     })
   }
-    const GoogleSignUp = () =>{
-      auth.languageCode = 'it';
-      const provider = new GoogleAuthProvider();
-      provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-      signInWithRedirect(auth, provider)
-        getRedirectResult(auth)
-        .then(async(result) => {
+    const GoogleSignUp = async () =>{ // Add async keyword to make function asynchronous
+        auth.languageCode = 'it';
+        const provider = new GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        try {
+          await signInWithRedirect(auth, provider); // Wait for sign-in redirect to complete
+          const result = await getRedirectResult(auth); // Wait for redirect result
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
-          const User = result.user;
-          const pa =result.password 
-          navigate('/login') 
-            //  .then( async()=>{
+          const user = result.user; // Use lowercase variable name to avoid confusion with User class
+          const pa = result.credential.passwordHash; // Use credential.passwordHash to get password hash
           await addDoc(collection(db, "Users"), {
-            id: User.uid,
-            pa,token
-           
-          }).catch((er)=>{console.log(er.message);})
-          alert ("google db")
-        // })
-         
-        })
-       .catch((error) => {
-        console.log(error.code);
-        console.log(error.message);
-        console.log(error.customData.email);
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(credential);
-      })
-      
-      
-    }
-  
+            id: user.uid, // Use lowercase variable name
+            pa: pa, // Use colon to assign value to property
+            token: token // Use colon to assign value to property
+          });
+          alert ("Google signup successful"); // Change alert message
+          navigate('/login');
+        } catch (error) { // Catch any errors and log them
+          console.log(error);
+          alert ("Google signup failed"); // Change alert message
+        }
+      }
   return (
     <div className='SignUp'>
-      <div className='signup-box -translate-x-1/2 -translate-y-1/2 flex flex-col md:w-[500px] h-[600px] justify-center border-theme-color border-2 rounded-xl'>
+      <div className='signup-box -translate-x-1/2 -translate-y-1/2 flex flex-col h-full w-full md:w-[500px] md:h-[600px] justify-center border-theme-color border-2 rounded-xl'>
         <img src='https://imgs.search.brave.com/U0CUl7LbgMMwaA47z3INztIYvViivqLcHXJktFKSn4I/rs:fit:617:409:1/g:ce/aHR0cHM6Ly93d3cu/cGFrZmVhdHVyZXMu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIwLzA0L09MWF9O/ZXdfTG9nby5wbmc' className='w-36 md:w-52 rounded-full self-center md:my-4 ' alt='OLX'/>
         <div className='flex flex-col px-2 '>
             <label>Username</label>

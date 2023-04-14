@@ -22,6 +22,7 @@ const ViewProduct = () => {
   const db = getFirestore(app);
   
   document.title= `OLX | ${productDetails.ProductTitle.toUpperCase()}`
+  window.scrollTo(0, 0)
 
     useEffect(()=>{
      ( async ()=>{
@@ -179,7 +180,7 @@ const ViewProduct = () => {
                  <p className='text-theme-color font-medium text-base md:text-lg '>{"Phone Number :  "+userDetails.phonenumber}</p>
                  <p className='text-theme-color font-medium text-base md:text-lg '>{"Email :  "+userDetails.email}</p>
                </div>
-             <div className='RelatedProducts  md:h-[200px] w-full md:w-[800px] border-2 border-gray-300 bg-white rounded pl- flex flex-col justify-start overflow-scroll scroll whitespace-nowrap '>
+             <div className='RelatedProducts md:h-[200px] w-full md:w-[800px] border-2 border-gray-300 bg-white rounded flex flex-col justify-start overflow-scroll scroll whitespace-nowrap '>
              <h1 className='text-lg font-semibold ml-3'>Related Ads</h1>
                 <div className='flex overflow-scroll scroll whitespace-nowrap'>
                 {relatedPost.map((post)=>( 
