@@ -19,12 +19,9 @@ const Create = () => {
   const [price, setPrice] = useState("")
   const [image, setImage] = useState([])
   const [location, setLocation] = useState("")
-  const [url, setUrl] = useState(null)
   const [load, setLoad] = useState(false)
-
   const [category, setCategory] = useState()
   const [next, setNext] = useState(false)
-  const [confirm, setConfirm] = useState()
   const {user} = useContext(AuthContext)  // Logined user {}
   const app = useContext(FirebaseContext)
   const navigate = useNavigate()
@@ -58,8 +55,6 @@ const Create = () => {
         const result = await uploadBytes(productsRef, image[i]);
         console.log("Successful upload");
         const url = await getDownloadURL(result.ref);
-        console.log(url);
-        await setUrl(url);
         await addDoc(collection(db, "Products"), {
           id: user.uid,
           ProductTitle: title,

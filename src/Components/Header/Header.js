@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Header.css'
 import OlxLogo from '../../Assets/OlxLogo'
 import SearchIcon  from '../../Assets/SearchIcon'
@@ -10,11 +10,12 @@ import { useState } from 'react'
 import XIcon from '../../Assets/XIcon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBook, faBox, faBuilding, faCamera, faCar, faMapMarkerAlt, faMessage, faMobileAlt, faQuestion, faEarth, faSignOut, faScrewdriver } from '@fortawesome/free-solid-svg-icons'
-import { AuthContext } from '../../Contexts/Context'
+import { AuthContext, FirebaseContext } from '../../Contexts/Context'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { getAuth, signOut, } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom'
 import Draggable from 'react-draggable';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 function Header () {
 
@@ -23,13 +24,17 @@ function Header () {
   const [profile, setProfile] = useState(false) 
   const [language, setLanguage] = useState(false)
   const [edit, setEdit] =useState(false)
+  const [userDoc, setUserDoc] = useState([])
   const [inpValue, setInpValue] = useState("")
   const navigate =useNavigate()
   const {user} = useContext(AuthContext)
+  const app = useContext(FirebaseContext)
+    const db = getFirestore(app)
   
     const displayName = user?.displayName ||'????'  // user displayName
    const len = displayName.length -1   // displayName length-1 
   
+   console.log(userDoc);
      const handleLogout = () =>{
       const auth = getAuth();
         signOut(auth).then(() => {
@@ -45,6 +50,23 @@ function Header () {
           navigate('/login')
         }
       }
+
+      useEffect(()=>{
+        (async()=>{
+          const usersCollection = collection(db, 'Users');
+          const currentUserQuery = query(usersCollection, where("id","==", user?.uid)); //not maping coll , we use where to find oor current user uid == firestore doc.coll id
+          const currentUserDocs = await getDocs(currentUserQuery);
+          console.log("test doc  ",currentUserDocs);
+          currentUserDocs.forEach((doc) => (
+            
+            setUserDoc(doc.data())
+    
+          ))
+            })().catch((err)=>{
+          console.log(err.message);
+          })
+          
+        },[])
 
   return (
     <div className='Header'>
@@ -62,9 +84,11 @@ function Header () {
          user ?
           <div className={`MobileView bg-white absolute  mt-12 w-full  shadow-xl rounded z-50 ${nav? `slide` : null}`} >
       <div className='Profile inline-flex p-6 -ml-2'>
-       <div className='ProfileIcon flex w-32 h-20 profile-pic self-center'>
-       <h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
-       </div>
+       <div className='ProfileIcon flex w-20 h-20 profile-pic self-center'>
+        {userDoc.profileUrl?
+        (<img src={userDoc.profileUrl} className=' w-20 h-20 rounded-full border-0'/>)
+       : <h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
+        }</div>
         <div className='Text flex flex-col ml-3' >
         <p className='text-left text-[15px] text-gray-500'>Hello,</p>
          <h1 className='font-medium text-xl  text-theme-color capitalize'>Welcome {user.displayName}</h1>
@@ -93,7 +117,7 @@ function Header () {
           </ul>
         </div>
         :
-        <div className="MobileView bg-white absolute mt-12 h-full w-full z-50 shadow-xl">
+        <div className="MobileViewNoUser bg-white absolute mt-12 h-full w-full z-50 shadow-xl">
         <div className='Profile inline-flex p-6 -ml-2'>
          <img className='w-24 h-24 'src='https://statics.olx.in/external/base/img/avatar_empty_state.png' alt='profile'></img>
           <div className='Text flex flex-col ml-3'>
@@ -197,7 +221,9 @@ function Header () {
            <div onClick={()=>{setProfile(!profile)}} onBlur={()=>{setProfile(false)}} onFocus={()=>{setProfile(false)}} className='ProfileIcon flex items-center gap-3'>
            {/* <img className='w-10 h-10 mt-3'src='https://statics.olx.in/external/base/img/avatar_1.png'></img> */}
            <div className='ProfileIcon-small flex mt-3 w-10 h-10 profile-pic self-center'>
-         <h1 className='self-center left-10 text-xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
+           {userDoc? 
+           <img src={userDoc.profileUrl} className=' w-10 h-10 rounded-full bg-repeat'/>
+         :<h1 className='self-center left-10 text-xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>}
          </div>
             <span className={`${profile?'rotate-180 ease-in-out duration-500':'duration-500'}`}> <ArrowBtn/> </span>
            </div>
@@ -213,7 +239,10 @@ function Header () {
             <div className={`MobileView `}>
         <div className='Profile inline-flex p-6 -ml-2'>
          <div className='ProfileIcon flex w-28 h-14 profile-pic self-center'>
-         <h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
+         {userDoc.profileUrl? 
+          ( <img src={userDoc.profileUrl} className='bg-cover w-28 h-14 rounded-3xl'/>)
+         :<h1 className='self-center left-10 text-4xl text-white uppercase truncate'>{user.displayName.slice(0, -len)}</h1>
+         }
          </div>
           <div className='Text flex flex-col ml-3'>
           <p className='text-left text-[15px] text-gray-500'>Hello,</p>
